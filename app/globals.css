@@ -12,5 +12,5 @@
 body {
   background-color: var(--primary-color);
   color: var(--text-color);
-  /* font-size: clam; */
+  font-size: clamp(15px, 2.1vw, 20px);
 }

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import { redHatDisplay } from './assets/fonts'
 
 export const metadata: Metadata = {
   title: 'All in one',
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className={redHatDisplay.className}>{children}</body>
     </html>
   )
 }
