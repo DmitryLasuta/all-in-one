@@ -20,11 +20,15 @@ type Product = {
 
 class FakeStore {
   private baseUrl = 'https://api.escuelajs.co/api/v1'
+  private baseRevalidate = 3600
 
   public getProducts = async (): Promise<Product[]> => {
     const endpoint = `${this.baseUrl}/products`
     try {
-      const response = await fetch(endpoint, { next: { revalidate: 1800 } })
+      const response = await fetch(endpoint, {
+        next: { revalidate: this.baseRevalidate },
+      })
+
       if (response.ok) {
         const products: Product[] = await response.json()
         return products.map(product => ({
@@ -43,7 +47,10 @@ class FakeStore {
   public getCategories = async (): Promise<Category[]> => {
     const endpoint = `${this.baseUrl}/categories`
     try {
-      const response = await fetch(endpoint, { next: { revalidate: 1800 } })
+      const response = await fetch(endpoint, {
+        next: { revalidate: this.baseRevalidate },
+      })
+
       return await response.json()
     } catch (error) {
       console.log(error)
