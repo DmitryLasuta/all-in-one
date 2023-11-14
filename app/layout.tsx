@@ -29,13 +29,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div className="flex items-center justify-between lg:justify-start lg:lg:gap-8 lg:px-10">
             <NavigationMenu />
             <Link
-              className={`${dockerOne.className} text-xl md:text-3xl inline lg:ml-auto lg:mr-36 after:content-['>>'] after:pl-2 before:content-['<<'] before:pr-2`}
+              className={`${dockerOne.className} text-xl md:text-3xl inline lg:ml-auto xl:mr-[10%] after:content-['>>'] after:pl-2 before:content-['<<'] before:pr-2`}
               href={'/'}
             >
               <span className="-tracking-tighter">all in one</span>
             </Link>
             <div className="">
-              <button className="block text-3xl p-2 border-l-2 pl-4" type="button">
+              <button
+                className="block text-2xl p-2 lg:border-l-2 lg:pl-4 lg:text-3xl"
+                type="button"
+              >
                 <PiShoppingCartBold />
               </button>
             </div>
