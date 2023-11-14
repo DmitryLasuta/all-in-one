@@ -1,16 +1,18 @@
 import type { Config } from 'tailwindcss'
 
 const config: Config = {
-  content: [
-    './components/**/*.{js,ts,jsx,tsx,mdx}',
-    './app/**/*.{js,ts,jsx,tsx,mdx}',
-  ],
+  content: ['./components/**/*.{js,ts,jsx,tsx,mdx}', './app/**/*.{js,ts,jsx,tsx,mdx}'],
   theme: {
     colors: {
       primary: 'var(--primary-color)',
       secondary: 'var(--secondary-color)',
       accent: 'var(--accent-color)',
       typography: 'var(--text-color)',
+    },
+    extend: {
+      container: {
+        center: true,
+      },
     },
   },
   plugins: [],

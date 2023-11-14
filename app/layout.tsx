@@ -1,6 +1,10 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import { redHatDisplay } from './assets/fonts'
+import { dockerOne } from './assets/fonts'
+import Link from 'next/link'
+import { PiShoppingCartBold } from 'react-icons/pi'
+import { NavigationMenu } from '@/components'
 
 export const metadata: Metadata = {
   title: 'All in one',
@@ -20,7 +24,26 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={redHatDisplay.className}>{children}</body>
+      <body className={`${redHatDisplay.className} overflow-hidden`}>
+        <header className="bg-accent p-4 text-secondary">
+          <div className="flex items-center justify-between lg:justify-start lg:lg:gap-8 lg:px-10">
+            <NavigationMenu />
+            <Link
+              className={`${dockerOne.className} text-xl md:text-3xl inline lg:ml-auto lg:mr-36 after:content-['>>'] after:pl-2 before:content-['<<'] before:pr-2`}
+              href={'/'}
+            >
+              <span className="-tracking-tighter">all in one</span>
+            </Link>
+            <div className="">
+              <button className="block text-3xl p-2 border-l-2 pl-4" type="button">
+                <PiShoppingCartBold />
+              </button>
+            </div>
+          </div>
+        </header>
+        <main className="container px-4">{children}</main>
+        <footer></footer>
+      </body>
     </html>
   )
 }
