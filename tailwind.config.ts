@@ -12,6 +12,24 @@ const config: Config = {
     extend: {
       container: {
         center: true,
+        padding: '1rem',
+      },
+
+      animation: {
+        'move-r': 'move-right 60s linear infinite',
+      },
+
+      keyframes: {
+        'move-right': {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(100%)' },
+        },
+
+        shimmer: {
+          '100%': {
+            transform: 'translateX(100%)',
+          },
+        },
       },
     },
   },

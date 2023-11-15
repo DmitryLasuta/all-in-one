@@ -1,5 +1,5 @@
 import { formatCurrency } from './../../utils/formatCurrency'
-type Category = {
+export type Category = {
   id: number
   name: 'Clothes' | 'Electronics' | 'Furniture' | 'Shoes' | 'Miscellaneous'
   image: string
@@ -7,7 +7,7 @@ type Category = {
   updatedAt: Date
 }
 
-type Product = {
+export type Product = {
   id: number
   title: string
   price: string

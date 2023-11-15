@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${redHatDisplay.className} overflow-hidden`}>
+      <body className={`${redHatDisplay.className}`}>
         <header className="bg-accent p-4 text-secondary">
           <div className="flex items-center justify-between lg:justify-start lg:lg:gap-8 lg:px-10">
             <NavigationMenu />
@@ -44,7 +44,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </div>
           </div>
         </header>
-        <main className="container px-4 py-10">{children}</main>
+        <main>{children}</main>
         <footer></footer>
       </body>
     </html>
