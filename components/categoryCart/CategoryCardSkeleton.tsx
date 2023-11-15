@@ -14,3 +14,18 @@ export const CategoryCardSkeleton = ({ ...attrs }: CategoryCardSkeletonProps) =>
     </div>
   )
 }
+
+export const CategoryCardListSkeleton = () => {
+  const skeletons = new Array(12)
+    .fill(0)
+    .map((_, index) => <CategoryCardSkeleton className="mt-4" key={index} />)
+
+  return (
+    <div
+      role="status"
+      className="animate-pulse columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-4"
+    >
+      {...skeletons}
+    </div>
+  )
+}

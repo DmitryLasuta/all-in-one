@@ -22,7 +22,7 @@ class FakeStore {
   private baseUrl = 'https://api.escuelajs.co/api/v1'
   private baseRevalidate = 3600
 
-  public getProducts = async (): Promise<Product[]> => {
+  public getAllProducts = async (): Promise<Product[]> => {
     const endpoint = `${this.baseUrl}/products`
     try {
       const response = await fetch(endpoint, {
@@ -51,7 +51,26 @@ class FakeStore {
         next: { revalidate: this.baseRevalidate },
       })
 
-      return await response.json()
+      const categories: Category[] = await response.json()
+
+      /* Replacing inaccessible links 🩼 */
+      const fixedCategories = await Promise.all(
+        categories.map(async category => {
+          const { status } = await fetch(category.image)
+          if (status !== 200) {
+            return {
+              ...category,
+              image:
+                'https://st4.depositphotos.com/14953852/22772/v/450/depositphotos_227725020-stock-illustration-image-available-icon-flat-vector.jpg',
+            }
+          } else return category
+        })
+      ).then(
+        filteredCategories =>
+          filteredCategories.filter(category => category !== undefined) as Category[]
+      )
+
+      return fixedCategories
     } catch (error) {
       console.log(error)
       throw error
@@ -65,7 +84,6 @@ class FakeStore {
       const response = await fetch(endpoint)
       return await response.json()
     } catch (error) {
-      console.log(error)
       throw error
     }
   }

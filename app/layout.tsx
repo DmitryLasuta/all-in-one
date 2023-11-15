@@ -25,7 +25,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={`${redHatDisplay.className}`}>
-        <header className="bg-accent p-4 text-secondary">
+        <header className="bg-accent p-4 text-secondary xl:bg-fluid bg-no-repeat bg-fixed fixed top-0 w-full z-[100]">
           <div className="flex items-center justify-between lg:justify-start lg:lg:gap-8 lg:px-10">
             <NavigationMenu />
             <Link
@@ -44,7 +44,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </div>
           </div>
         </header>
-        <main>{children}</main>
+        <main className="min-h-screen mt-20">{children}</main>
         <footer></footer>
       </body>
     </html>

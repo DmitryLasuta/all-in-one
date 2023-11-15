@@ -10,6 +10,10 @@ const config: Config = {
       typography: 'var(--text-color)',
     },
     extend: {
+      backgroundImage: {
+        fluid: "url('/fluid-bg.svg')",
+      },
+
       container: {
         center: true,
         padding: '1rem',
