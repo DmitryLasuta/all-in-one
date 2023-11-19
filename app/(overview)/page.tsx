@@ -1,10 +1,6 @@
-import { FakeStore } from '@/lib/services/api/fakeStore'
+import { StoreAccessAPI } from '@/lib/services/storeAccessAPI'
 import { dockerOne } from '@/app/assets/fonts'
-import {
-  CategoryCard,
-  CategoryCardListSkeleton,
-  CategoryCardSkeleton,
-} from '@/components'
+import { CategoryCard, CategoryCardListSkeleton } from '@/components'
 import Image from 'next/image'
 import { josefinSans } from '@/app/assets/fonts'
 import { HTMLAttributes, Suspense } from 'react'
@@ -18,21 +14,20 @@ const ourBrandsList = [
   { title: 'The North Face ', image: '/brandsLogo/TNF.svg' },
 ]
 
-const fakeStoreApi = new FakeStore()
+const allInOneStoreApi = new StoreAccessAPI()
 
 const TheFirstBrand = async ({ ...attrs }: HTMLAttributes<HTMLDivElement>) => {
-  const category = await fakeStoreApi.getCategoryById(1)
-  await new Promise(resolve => setTimeout(resolve, 5000))
-  return <CategoryCard {...attrs} category={category} />
+  const category = await allInOneStoreApi.getCategoryById(1)
+  return <CategoryCard {...attrs} category={category} imagePriority={true} />
 }
 
 const CategoriesWrapper = async () => {
-  const categories = await fakeStoreApi.getCategories()
-  await new Promise(resolve => setTimeout(resolve, 5000))
+  const categories = await allInOneStoreApi.getAllCategories()
+  // await new Promise(resolve => setTimeout(resolve, 5000))
   return (
-    <ul className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-4">
+    <ul className="grid grid-flow-dense grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
       {categories.map((category, index) => (
-        <li key={category.id} className="mb-4">
+        <li key={category.id}>
           <CategoryCard category={category} />
         </li>
       ))}
@@ -43,10 +38,17 @@ const CategoriesWrapper = async () => {
 export default async function HomePage() {
   return (
     <>
+      {/* Banner section */}
       <div className="container py-12 text-center lg:text-right w-full flex flex-col lg:flex-row items-center gap-4 lg:gap-10">
-        <Suspense fallback={<CategoryCardSkeleton className="w-2/3 lg:w-1/2" />}>
-          <TheFirstBrand className="w-2/3 lg:w-1/2" />
-        </Suspense>
+        <picture>
+          <source
+            media="(min-width: 768px)"
+            width={700}
+            height={500}
+            srcSet="/banner.jpg"
+          />
+          <Image src="/banner-mobile.jpeg" width={500} height={600} priority alt="" />
+        </picture>
         <div className="">
           <h1 className={`${dockerOne.className} text-3xl capitalize mb-4 font-bold`}>
             Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -55,9 +57,11 @@ export default async function HomePage() {
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias saepe itaque
             ipsam corrupti excepturi nihil similique blanditiis modi placeat inventore?
           </p>
+          I
         </div>
       </div>
 
+      {/* Our brands section */}
       <div className="bg-accent py-8 xl:bg-fluid bg-no-repeat bg-fixed">
         <section className="container">
           <h2
@@ -77,7 +81,8 @@ export default async function HomePage() {
         </section>
       </div>
 
-      <section className="py-4 relative overflow-hidden">
+      {/* Categories list section */}
+      <section className="py-8 relative overflow-hidden">
         <div className="container">
           <h2
             className={`${josefinSans.className} uppercase font-bold text-center text-3xl mb-4`}
