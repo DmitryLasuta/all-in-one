@@ -16,11 +16,6 @@ const ourBrandsList = [
 
 const allInOneStoreApi = new StoreAccessAPI()
 
-const TheFirstBrand = async ({ ...attrs }: HTMLAttributes<HTMLDivElement>) => {
-  const category = await allInOneStoreApi.getCategoryById(1)
-  return <CategoryCard {...attrs} category={category} imagePriority={true} />
-}
-
 const CategoriesWrapper = async () => {
   const categories = await allInOneStoreApi.getAllCategories()
   // await new Promise(resolve => setTimeout(resolve, 5000))
@@ -39,12 +34,12 @@ export default async function HomePage() {
   return (
     <>
       {/* Banner section */}
-      <div className="container py-12 text-center lg:text-right w-full flex flex-col lg:flex-row items-center gap-4 lg:gap-10">
+      <div className="container py-16 text-center lg:text-right w-full flex flex-col lg:flex-row items-center gap-4 lg:gap-10">
         <picture>
           <source
             media="(min-width: 768px)"
-            width={700}
-            height={500}
+            width={900}
+            height={700}
             srcSet="/banner.jpg"
           />
           <Image src="/banner-mobile.jpeg" width={500} height={600} priority alt="" />
@@ -85,7 +80,7 @@ export default async function HomePage() {
       <section className="py-8 relative overflow-hidden">
         <div className="container">
           <h2
-            className={`${josefinSans.className} uppercase font-bold text-center text-3xl mb-4`}
+            className={`${josefinSans.className} uppercase font-bold text-center text-3xl mb-6`}
           >
             Categories
           </h2>
