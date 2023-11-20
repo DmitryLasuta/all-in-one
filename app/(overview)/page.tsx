@@ -1,9 +1,9 @@
-import { StoreAccessAPI } from '@/lib/services/storeAccessAPI'
 import { dockerOne } from '@/app/assets/fonts'
 import { CategoryCard, CategoryCardListSkeleton } from '@/components'
 import Image from 'next/image'
 import { josefinSans } from '@/app/assets/fonts'
 import { HTMLAttributes, Suspense } from 'react'
+import DatabaseService from '@/lib/services/databaseService'
 
 const ourBrandsList = [
   { title: 'Converse', image: '/brandsLogo/converse.svg' },
@@ -14,14 +14,14 @@ const ourBrandsList = [
   { title: 'The North Face ', image: '/brandsLogo/TNF.svg' },
 ]
 
-const allInOneStoreApi = new StoreAccessAPI()
+const storeDB = new DatabaseService()
 
 const CategoriesWrapper = async () => {
-  const categories = await allInOneStoreApi.getAllCategories()
+  const categories = await storeDB.getAllCategories()
   // await new Promise(resolve => setTimeout(resolve, 5000))
   return (
     <ul className="grid grid-flow-dense grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
-      {categories.map((category, index) => (
+      {categories.map(category => (
         <li key={category.id}>
           <CategoryCard category={category} />
         </li>

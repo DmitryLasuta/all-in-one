@@ -1,4 +1,4 @@
-import type { Category } from '@/app/api/products/categories/route'
+import type { Category } from '@/lib/services/databaseService'
 import Image from 'next/image'
 import { HTMLAttributes } from 'react'
 
