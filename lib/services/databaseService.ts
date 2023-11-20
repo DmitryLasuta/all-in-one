@@ -1,11 +1,11 @@
 import { sql } from '@vercel/postgres'
 
-export type Category = {
+export interface Category {
   id: number
   name: string
   image: string
 }
-export type Product = {
+export interface Product {
   id: number
   title: string
   price: number
@@ -39,20 +39,56 @@ export default class DatabaseService {
     }
   }
 
-  public getAllProducts = async (
-    limit?: number,
-    offset?: number,
+  public getAllProducts = async ({
+    limit,
+    offset = 10,
+    category,
+  }: Partial<{
+    limit?: number
+    offset?: number
     category?: Category
-  ): Promise<Product[]> => {
+  }> = {}): Promise<Product[]> => {
     try {
+      if (category) {
+        const { rows } = await sql<Product>`
+          SELECT id, title, price, description, category, image, 
+            JSON_BUILD_OBJECT('rate', rating_rate, 'count', rating_count) AS rating
+          FROM products
+          WHERE category = ${category.name}
+          OFFSET ${offset}`
+
+        if (limit) {
+          const { rows } = await sql<Product>`
+          SELECT id, title, price, description, category, image, 
+            JSON_BUILD_OBJECT('rate', rating_rate, 'count', rating_count) AS rating
+          FROM products
+          WHERE category = ${category.name}
+          LIMIT ${limit}
+          OFFSET ${offset}`
+
+          return rows.map(product => ({
+            ...product,
+          }))
+        }
+
+        return rows
+      }
+
+      if (limit) {
+        const { rows } = await sql<Product>`
+          SELECT id, title, price, description, category, image, 
+            JSON_BUILD_OBJECT('rate', rating_rate, 'count', rating_count) AS rating
+          FROM products
+          OFFSET ${offset}
+          LIMIT ${limit}`
+        return rows
+      }
+
       const { rows } = await sql<Product>`
         SELECT id, title, price, description, category, image, 
           JSON_BUILD_OBJECT('rate', rating_rate, 'count', rating_count) AS rating
         FROM products
-        ${category ? `WHERE category = ${category.name}` : ''}
-        ${limit ? `LIMIT ${limit}` : ''}
-        ${offset ? `OFFSET ${offset}` : ''}
-      `
+        OFFSET ${offset}`
       return rows
     } catch (error) {
       throw error
@@ -67,6 +103,21 @@ export default class DatabaseService {
         FROM products
         WHERE id = ${id}`
       return rows.at(0)
+    } catch (error) {
+      throw error
+    }
+  }
+
+  public getTopRatedProducts = async (limit: number = 5): Promise<Product[]> => {
+    try {
+      const { rows } = await sql<Product>`
+      SELECT id, title, price, description, category, image, 
+        JSON_BUILD_OBJECT('rate', rating_rate, 'count', rating_count) AS rating
+      FROM products
+      ORDER BY Rating_rate DESC
+      LIMIT ${limit};`
+
+      return rows
     } catch (error) {
       throw error
     }

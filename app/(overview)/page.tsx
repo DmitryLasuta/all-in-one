@@ -1,8 +1,8 @@
 import { dockerOne } from '@/app/assets/fonts'
-import { CategoryCard, CategoryCardListSkeleton } from '@/components'
+import { CategoryCard, CategoryCardListSkeleton, ProductCart } from '@/components'
 import Image from 'next/image'
 import { josefinSans } from '@/app/assets/fonts'
-import { HTMLAttributes, Suspense } from 'react'
+import { Suspense } from 'react'
 import DatabaseService from '@/lib/services/databaseService'
 
 const ourBrandsList = [
@@ -20,7 +20,7 @@ const CategoriesWrapper = async () => {
   const categories = await storeDB.getAllCategories()
   // await new Promise(resolve => setTimeout(resolve, 5000))
   return (
-    <ul className="grid grid-flow-dense grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
+    <ul className="grid grid-flow-dense grid-cols-1 justify-items-center md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
       {categories.map(category => (
         <li key={category.id}>
           <CategoryCard category={category} />
@@ -31,6 +31,7 @@ const CategoriesWrapper = async () => {
 }
 
 export default async function HomePage() {
+  const topRatedProducts = await storeDB.getTopRatedProducts(12)
   return (
     <>
       {/* Banner section */}
@@ -42,7 +43,14 @@ export default async function HomePage() {
             height={700}
             srcSet="/banner.jpg"
           />
-          <Image src="/banner-mobile.jpeg" width={500} height={600} priority alt="" />
+          <Image
+            className="bg-secondary"
+            src="/banner-mobile.jpeg"
+            width={500}
+            height={600}
+            priority
+            alt=""
+          />
         </picture>
         <div className="">
           <h1 className={`${dockerOne.className} text-3xl capitalize mb-4 font-bold`}>
@@ -59,11 +67,11 @@ export default async function HomePage() {
       {/* Our brands section */}
       <div className="bg-accent py-8 xl:bg-fluid bg-no-repeat bg-fixed">
         <section className="container">
-          <h2
+          <h3
             className={`${josefinSans.className} uppercase font-bold text-center text-3xl mb-4`}
           >
             Our brans
-          </h2>
+          </h3>
           <ul
             className={`grid grid-cols-3 md:grid-cols-6 justify-items-center items-center gap-4 md:gap-8 xl:gap-12`}
           >
@@ -89,6 +97,24 @@ export default async function HomePage() {
           </Suspense>
         </div>
       </section>
+
+      {/* Most popular products */}
+      <div className="bg-accent py-8 xl:bg-fluid bg-no-repeat bg-fixed">
+        <section className="container">
+          <h3
+            className={`${josefinSans.className} uppercase font-bold text-center text-3xl mb-4`}
+          >
+            Top {topRatedProducts.length} rated products
+          </h3>
+          <ul className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-4">
+            {topRatedProducts.map(product => (
+              <li className="mb-4" key={product.id}>
+                <ProductCart variant="vertical" product={product} />
+              </li>
+            ))}
+          </ul>
+        </section>
+      </div>
     </>
   )
 }

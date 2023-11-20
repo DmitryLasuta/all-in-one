@@ -16,7 +16,12 @@ const config: Config = {
 
       container: {
         center: true,
-        padding: '1rem',
+        padding: {
+          DEFAULT: '1rem',
+          sm: '1.2rem',
+          md: '1.5rem',
+          lg: '2rem',
+        },
       },
 
       animation: {
