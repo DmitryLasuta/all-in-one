@@ -84,12 +84,7 @@ export default async function HomePage() {
       </div>
 
       {/* Our brands section */}
-      <SpotlightSection>
-        <h3
-          className={`${josefinSans.className} uppercase font-bold text-center text-3xl mb-4`}
-        >
-          Our brans
-        </h3>
+      <SpotlightSection title="Our brands">
         <ul
           className={`grid grid-cols-3 md:grid-cols-6 justify-items-center items-center gap-4 md:gap-8 xl:gap-12`}
         >
@@ -102,24 +97,14 @@ export default async function HomePage() {
       </SpotlightSection>
 
       {/* Categories list section */}
-      <Section>
-        <h2
-          className={`${josefinSans.className} uppercase font-bold text-center text-3xl mb-6`}
-        >
-          Categories
-        </h2>
+      <Section title="Categories">
         <Suspense fallback={<CategoryCardListSkeleton />}>
           <CategoriesWrapper />
         </Suspense>
       </Section>
 
-      {/* Most popular products */}
-      <SpotlightSection>
-        <h3
-          className={`${josefinSans.className} uppercase font-bold text-center text-3xl mb-4`}
-        >
-          Top rated products
-        </h3>
+      {/* Top rated products */}
+      <SpotlightSection title="Top rated products">
         <Suspense
           fallback={<ProductCartSkeletonGroup count={12} skeletonsVariant="vertical" />}
         >
