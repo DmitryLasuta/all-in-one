@@ -1,3 +1,3 @@
 export * from './NavigationMenu'
 export * from './categoryCart'
-export * from './productCart'
+export * from './productCard'

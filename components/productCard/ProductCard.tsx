@@ -3,8 +3,9 @@
 import type { Product } from '@/lib/services/databaseService'
 import Image from 'next/image'
 import { dockerOne } from '@/app/assets/fonts/index'
+import { Button } from '@/components/ui'
 
-export const ProductCart = ({
+export const ProductCard = ({
   product,
   variant = 'horizontal',
 }: {
@@ -20,7 +21,7 @@ export const ProductCart = ({
         variant === 'horizontal' ? 'lg:items-start' : ''
       }  bg-primary p-4 rounded ${
         variant === 'vertical' ? 'text-center' : ''
-      } w-full h-full`}
+      } w-full h-full mb-4`}
     >
       <Image
         className="mb-4 object-contain bg-[#c7c7c7] rounded"
@@ -35,12 +36,7 @@ export const ProductCart = ({
             {price}
           </span>
           <span className="text-sm">(Rate: {rating.rate})</span>
-          <button
-            className="text-sm bg-secondary px-4 py-2 rounded text-primary"
-            type="button"
-          >
-            Add to cart
-          </button>
+          <Button style={{ fontWeight: 'bold' }}>Add to cart</Button>
         </div>
         <h4 className={`text-xl ${dockerOne.className} mb-4`}>{title}</h4>
       </figcaption>

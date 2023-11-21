@@ -1,9 +1,15 @@
 import { dockerOne } from '@/app/assets/fonts'
-import { CategoryCard, CategoryCardListSkeleton, ProductCart } from '@/components'
+import {
+  CategoryCard,
+  CategoryCardListSkeleton,
+  ProductCard,
+  ProductCartSkeletonGroup,
+} from '@/components'
 import Image from 'next/image'
 import { josefinSans } from '@/app/assets/fonts'
 import { Suspense } from 'react'
 import DatabaseService from '@/lib/services/databaseService'
+import { Section, SpotlightSection } from '@/components/ui'
 
 const ourBrandsList = [
   { title: 'Converse', image: '/brandsLogo/converse.svg' },
@@ -30,8 +36,21 @@ const CategoriesWrapper = async () => {
   )
 }
 
-export default async function HomePage() {
+const ProductsWrapper = async () => {
   const topRatedProducts = await storeDB.getTopRatedProducts(12)
+  // await new Promise(resolve => setTimeout(resolve, 50000))
+  return (
+    <ul className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-4">
+      {topRatedProducts.map(product => (
+        <li className="mb-4" key={product.id}>
+          <ProductCard variant="vertical" product={product} />
+        </li>
+      ))}
+    </ul>
+  )
+}
+
+export default async function HomePage() {
   return (
     <>
       {/* Banner section */}
@@ -65,56 +84,48 @@ export default async function HomePage() {
       </div>
 
       {/* Our brands section */}
-      <div className="bg-accent py-8 xl:bg-fluid bg-no-repeat bg-fixed">
-        <section className="container">
-          <h3
-            className={`${josefinSans.className} uppercase font-bold text-center text-3xl mb-4`}
-          >
-            Our brans
-          </h3>
-          <ul
-            className={`grid grid-cols-3 md:grid-cols-6 justify-items-center items-center gap-4 md:gap-8 xl:gap-12`}
-          >
-            {ourBrandsList.map(({ title, image }) => (
-              <li className="w-fit" key={title}>
-                <Image src={image} alt={title} width={200} height={200} />
-              </li>
-            ))}
-          </ul>
-        </section>
-      </div>
+      <SpotlightSection>
+        <h3
+          className={`${josefinSans.className} uppercase font-bold text-center text-3xl mb-4`}
+        >
+          Our brans
+        </h3>
+        <ul
+          className={`grid grid-cols-3 md:grid-cols-6 justify-items-center items-center gap-4 md:gap-8 xl:gap-12`}
+        >
+          {ourBrandsList.map(({ title, image }) => (
+            <li className="w-fit" key={title}>
+              <Image src={image} alt={title} width={200} height={200} />
+            </li>
+          ))}
+        </ul>
+      </SpotlightSection>
 
       {/* Categories list section */}
-      <section className="py-8 relative overflow-hidden">
-        <div className="container">
-          <h2
-            className={`${josefinSans.className} uppercase font-bold text-center text-3xl mb-6`}
-          >
-            Categories
-          </h2>
-          <Suspense fallback={<CategoryCardListSkeleton />}>
-            <CategoriesWrapper />
-          </Suspense>
-        </div>
-      </section>
+      <Section>
+        <h2
+          className={`${josefinSans.className} uppercase font-bold text-center text-3xl mb-6`}
+        >
+          Categories
+        </h2>
+        <Suspense fallback={<CategoryCardListSkeleton />}>
+          <CategoriesWrapper />
+        </Suspense>
+      </Section>
 
       {/* Most popular products */}
-      <div className="bg-accent py-8 xl:bg-fluid bg-no-repeat bg-fixed">
-        <section className="container">
-          <h3
-            className={`${josefinSans.className} uppercase font-bold text-center text-3xl mb-4`}
-          >
-            Top {topRatedProducts.length} rated products
-          </h3>
-          <ul className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-4">
-            {topRatedProducts.map(product => (
-              <li className="mb-4" key={product.id}>
-                <ProductCart variant="vertical" product={product} />
-              </li>
-            ))}
-          </ul>
-        </section>
-      </div>
+      <SpotlightSection>
+        <h3
+          className={`${josefinSans.className} uppercase font-bold text-center text-3xl mb-4`}
+        >
+          Top rated products
+        </h3>
+        <Suspense
+          fallback={<ProductCartSkeletonGroup count={12} skeletonsVariant="vertical" />}
+        >
+          <ProductsWrapper />
+        </Suspense>
+      </SpotlightSection>
     </>
   )
 }
