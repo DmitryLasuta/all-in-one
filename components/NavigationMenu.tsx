@@ -42,6 +42,7 @@ export const NavigationMenu = () => {
                   'text-primary': pathname === href,
                 })}
                 href={href}
+                onClick={() => setIsOpen(false)}
               >
                 {title}
               </Link>

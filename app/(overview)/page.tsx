@@ -6,10 +6,13 @@ import {
   ProductCartSkeletonGroup,
 } from '@/components'
 import Image from 'next/image'
-import { josefinSans } from '@/app/assets/fonts'
 import { Suspense } from 'react'
 import DatabaseService from '@/lib/services/databaseService'
 import { Section, SpotlightSection } from '@/components/ui'
+import { MdHighQuality } from 'react-icons/md'
+import { FaFlagCheckered } from 'react-icons/fa'
+import { RiSecurePaymentFill } from 'react-icons/ri'
+import dynamic from 'next/dynamic'
 
 const ourBrandsList = [
   { title: 'Converse', image: '/brandsLogo/converse.svg' },
@@ -49,6 +52,27 @@ const ProductsWrapper = async () => {
     </ul>
   )
 }
+
+const ourAdvantagesList = [
+  {
+    title: 'High-Quality Products',
+    description:
+      'We guarantee the high quality of every product in our range. Only trusted brands and reliable suppliers.',
+    icon: <MdHighQuality />,
+  },
+  {
+    title: 'Fast Shipping',
+    description:
+      'We value your time, so we offer fast and reliable delivery. Your purchases will be in your hands in the shortest possible time.',
+    icon: <FaFlagCheckered />,
+  },
+  {
+    title: 'Secure Payments',
+    description:
+      'Your data is secure. We use modern technologies to ensure the security of your payments and personal information.',
+    icon: <RiSecurePaymentFill />,
+  },
+]
 
 export default async function HomePage() {
   return (
@@ -111,6 +135,23 @@ export default async function HomePage() {
           <ProductsWrapper />
         </Suspense>
       </SpotlightSection>
+
+      {/* Our advantages */}
+      <Section title="Why Choose Our Store?">
+        <ul className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-4">
+          {ourAdvantagesList.map(({ title, description, icon }) => (
+            <li className="text-center border-2 rounded p-4" key={title}>
+              <article>
+                <h4 className={`text-3xl font-bold`}>{title}</h4>
+                <div className="text-[7rem] text-secondary max-w-[7rem] mx-auto my-8">
+                  {icon}
+                </div>
+                <p className="text-justify">{description}</p>
+              </article>
+            </li>
+          ))}
+        </ul>
+      </Section>
     </>
   )
 }

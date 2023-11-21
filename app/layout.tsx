@@ -1,10 +1,9 @@
-import type { Metadata } from 'next'
 import './globals.css'
+import type { Metadata } from 'next'
 import { redHatDisplay } from './assets/fonts'
-import { dockerOne } from './assets/fonts'
-import Link from 'next/link'
 import { PiShoppingCartBold } from 'react-icons/pi'
 import { NavigationMenu } from '@/components'
+import { Logo } from '@/components/ui'
 
 export const metadata: Metadata = {
   title: 'All in one',
@@ -28,12 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <header className="bg-accent p-4 text-secondary xl:bg-fluid bg-no-repeat bg-fixed fixed top-0 w-full z-[100] border-b-2">
           <div className="flex items-center justify-between lg:justify-start lg:lg:gap-8 lg:px-10">
             <NavigationMenu />
-            <Link
-              className={`${dockerOne.className} text-xl md:text-3xl inline lg:ml-auto xl:mr-[10%] after:content-['>>'] after:pl-2 before:content-['<<'] before:pr-2`}
-              href={'/'}
-            >
-              <span className="-tracking-tighter">all in one</span>
-            </Link>
+            <Logo />
             <div className="">
               <button
                 className="block text-2xl p-2 lg:border-l-2 lg:pl-4 lg:text-3xl"
@@ -44,8 +38,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </div>
           </div>
         </header>
-        <main className="min-h-screen mt-20">{children}</main>
-        <footer></footer>
+        <main className="min-h-screen pt-[4.7rem]">{children}</main>
+        <footer className="bg-accent p-4 text-secondary xl:bg-fluid bg-no-repeat bg-fixed border-t-2">
+          <div className="container">
+            <Logo />
+          </div>
+        </footer>
       </body>
     </html>
   )
