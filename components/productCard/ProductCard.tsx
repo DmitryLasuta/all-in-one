@@ -1,6 +1,6 @@
 'use client'
 
-import type { Product } from '@/lib/services/databaseService'
+import type { Product } from '@/lib/types'
 import Image from 'next/image'
 import { dockerOne } from '@/app/assets/fonts/index'
 import { Button } from '@/components/ui'
@@ -21,7 +21,7 @@ export const ProductCard = ({
         variant === 'horizontal' ? 'lg:items-start' : ''
       }  bg-primary p-4 rounded ${
         variant === 'vertical' ? 'text-center' : ''
-      } w-full h-full mb-4`}
+      } w-full h-full mb-4 border-2 bg-[white]`}
     >
       <Image
         className="mb-4 object-contain bg-[#c7c7c7] rounded"

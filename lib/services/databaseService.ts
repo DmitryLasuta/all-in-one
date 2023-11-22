@@ -1,22 +1,5 @@
 import { sql } from '@vercel/postgres'
-
-export interface Category {
-  id: number
-  name: string
-  image: string
-}
-export interface Product {
-  id: number
-  title: string
-  price: number
-  description: string
-  category: Pick<Category, 'name'>
-  image: string
-  rating: {
-    rate: number
-    count: number
-  }
-}
+import type { Category, Product } from '@/lib/types'
 
 export default class DatabaseService {
   public getAllCategories = async (): Promise<Category[]> => {

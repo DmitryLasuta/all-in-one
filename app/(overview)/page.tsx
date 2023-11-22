@@ -1,9 +1,9 @@
 import { dockerOne } from '@/app/assets/fonts'
 import {
   CategoryCard,
-  CategoryCardListSkeleton,
+  CategoryCardSkeletonGroup,
   ProductCard,
-  ProductCartSkeletonGroup,
+  ProductCardSkeletonGroup,
 } from '@/components'
 import Image from 'next/image'
 import { Suspense } from 'react'
@@ -12,7 +12,6 @@ import { Section, SpotlightSection } from '@/components/ui'
 import { MdHighQuality } from 'react-icons/md'
 import { FaFlagCheckered } from 'react-icons/fa'
 import { RiSecurePaymentFill } from 'react-icons/ri'
-import dynamic from 'next/dynamic'
 
 const ourBrandsList = [
   { title: 'Converse', image: '/brandsLogo/converse.svg' },
@@ -27,7 +26,7 @@ const storeDB = new DatabaseService()
 
 const CategoriesWrapper = async () => {
   const categories = await storeDB.getAllCategories()
-  // await new Promise(resolve => setTimeout(resolve, 5000))
+  await new Promise(resolve => setTimeout(resolve, 5000))
   return (
     <ul className="grid grid-flow-dense grid-cols-1 justify-items-center md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
       {categories.map(category => (
@@ -120,19 +119,19 @@ export default async function HomePage() {
         </ul>
       </SpotlightSection>
 
-      {/* Categories list section */}
-      <Section title="Categories">
-        <Suspense fallback={<CategoryCardListSkeleton />}>
-          <CategoriesWrapper />
+      {/* Top rated products */}
+      <Section title="Top rated products">
+        <Suspense
+          fallback={<ProductCardSkeletonGroup count={12} skeletonsVariant="vertical" />}
+        >
+          <ProductsWrapper />
         </Suspense>
       </Section>
 
-      {/* Top rated products */}
-      <SpotlightSection title="Top rated products">
-        <Suspense
-          fallback={<ProductCartSkeletonGroup count={12} skeletonsVariant="vertical" />}
-        >
-          <ProductsWrapper />
+      {/* Categories list section */}
+      <SpotlightSection title="Categories">
+        <Suspense fallback={<CategoryCardSkeletonGroup count={4} />}>
+          <CategoriesWrapper />
         </Suspense>
       </SpotlightSection>
 

@@ -1,4 +1,4 @@
-export const ProductCartSkeleton = ({
+export const ProductCardSkeleton = ({
   variant = 'horizontal',
 }: {
   variant?: 'vertical' | 'horizontal'
@@ -40,7 +40,7 @@ export const ProductCartSkeleton = ({
   )
 }
 
-export const ProductCartSkeletonGroup = ({
+export const ProductCardSkeletonGroup = ({
   count,
   skeletonsVariant = 'horizontal',
 }: {
@@ -51,7 +51,7 @@ export const ProductCartSkeletonGroup = ({
     <ul className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-4">
       {[...Array(count)].map((_, index) => (
         <li className="mb-4" key={index}>
-          <ProductCartSkeleton variant={skeletonsVariant} />
+          <ProductCardSkeleton variant={skeletonsVariant} />
         </li>
       ))}
     </ul>

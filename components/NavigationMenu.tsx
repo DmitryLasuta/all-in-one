@@ -5,17 +5,9 @@ import { useState } from 'react'
 import { usePathname } from 'next/navigation'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { AiOutlineClose } from 'react-icons/ai'
-import clsx from 'clsx'
+import type { NavigationLinks } from '@/lib/types'
 
-const links = [
-  { title: 'Home', href: '/' },
-  { title: 'Products', href: '/products' },
-  { title: 'Privacy policy', href: '/privacy' },
-  { title: 'About us', href: '/about' },
-  { title: 'faq', href: '/faq' },
-]
-
-export const NavigationMenu = () => {
+export const NavigationMenu = ({ links }: { links: NavigationLinks[] }) => {
   const [isOpen, setIsOpen] = useState(false)
   const pathname = usePathname()
 
@@ -38,9 +30,9 @@ export const NavigationMenu = () => {
           {links.map(({ href, title }) => (
             <li key={title}>
               <Link
-                className={clsx('hover:text-primary transition-colors', {
-                  'text-primary': pathname === href,
-                })}
+                className={`hover:text-primary transition-colors ${
+                  pathname === href ? 'text-primary' : ''
+                }`}
                 href={href}
                 onClick={() => setIsOpen(false)}
               >
