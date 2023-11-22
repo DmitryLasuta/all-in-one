@@ -137,11 +137,11 @@ export default async function HomePage() {
 
       {/* Our advantages */}
       <Section title="Why Choose Our Store?">
-        <ul className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-4">
+        <ul className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
           {ourAdvantagesList.map(({ title, description, icon }) => (
-            <li className="text-center border-2 rounded p-4" key={title}>
-              <article>
-                <h4 className={`text-3xl font-bold`}>{title}</h4>
+            <li className="text-center border-2 rounded p-4 shadow-md" key={title}>
+              <article className="p-6">
+                <h4 className={`text-3xl font-semibold`}>{title}</h4>
                 <div className="text-[7rem] text-secondary max-w-[7rem] mx-auto my-8">
                   {icon}
                 </div>
