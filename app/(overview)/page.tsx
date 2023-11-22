@@ -106,8 +106,8 @@ export default async function HomePage() {
         </div>
       </div>
 
-      {/* Our brands section */}
-      <SpotlightSection title="Our brands">
+      {/* Our partners brands section */}
+      <SpotlightSection title="Our partners">
         <ul
           className={`grid grid-cols-3 md:grid-cols-6 justify-items-center items-center gap-4 md:gap-8 xl:gap-12`}
         >
