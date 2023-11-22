@@ -1,3 +1,6 @@
 export * from './Button'
 export * from './Section'
 export * from './Logo'
+export * from './ContactInfo'
+export * from './CopyrightInfo'
+export * from './SocialLinks'

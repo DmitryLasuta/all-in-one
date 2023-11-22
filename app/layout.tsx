@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import { redHatDisplay } from './assets/fonts'
 import { PiShoppingCartBold } from 'react-icons/pi'
 import { NavigationMenu } from '@/components'
-import { Logo } from '@/components/ui'
+import { ContactInfo, CopyrightInfo, Logo, SocialLinks } from '@/components/ui'
 import { NavigationLinks } from '@/lib/types'
 
 export const metadata: Metadata = {
@@ -50,7 +50,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main className="min-h-screen pt-[4.7rem]">{children}</main>
         <footer className="bg-accent p-4 text-secondary xl:bg-fluid bg-no-repeat bg-fixed border-t-2">
           <div className="container">
-            <Logo />
+            <div className="flex flex-col md:flex-row justify-between items-center md:items-start text-center md:text-left">
+              <div className="mb-6 md:mb-0">
+                <h4 className="text-2xl font-bold mb-4">Contact Us</h4>
+                <ContactInfo />
+              </div>
+              <div className="">
+                <h4 className="text-2xl font-bold mb-4">Follow Us</h4>
+                <SocialLinks />
+              </div>
+            </div>
+            <div className="mt-8">
+              <CopyrightInfo />
+            </div>
           </div>
         </footer>
       </body>
