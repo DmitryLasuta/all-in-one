@@ -1,17 +1,13 @@
-import { dockerOne } from '@/app/assets/fonts'
-import {
-  CategoryCard,
-  CategoryCardSkeletonGroup,
-  ProductCard,
-  ProductCardSkeletonGroup,
-} from '@/components'
-import Image from 'next/image'
-import { Suspense } from 'react'
-import DatabaseService from '@/lib/services/databaseService'
+import { CategoryCard, CategoryCardSkeletonGroup, ProductCard, ProductCardSkeletonGroup } from '@/components'
 import { Section, SpotlightSection } from '@/components/ui'
-import { MdHighQuality } from 'react-icons/md'
+
+import { DatabaseService } from '@/lib/services'
 import { FaFlagCheckered } from 'react-icons/fa'
+import Image from 'next/image'
+import { MdHighQuality } from 'react-icons/md'
 import { RiSecurePaymentFill } from 'react-icons/ri'
+import { Suspense } from 'react'
+import { dockerOne } from '@/app/assets/fonts'
 
 const ourBrandsList = [
   { title: 'Converse', image: '/brandsLogo/converse.svg' },
@@ -75,42 +71,28 @@ const ourAdvantagesList = [
 
 export default async function HomePage() {
   return (
-    <>
+    <main>
       {/* Banner section */}
-      <div className="container py-16 text-center lg:text-right w-full flex flex-col lg:flex-row items-center gap-4 lg:gap-10">
+      <section className="container py-16 text-center lg:text-right w-full flex flex-col lg:flex-row items-center gap-4 lg:gap-10">
         <picture>
-          <source
-            media="(min-width: 768px)"
-            width={900}
-            height={700}
-            srcSet="/banner.jpg"
-          />
-          <Image
-            className="bg-secondary"
-            src="/banner-mobile.jpeg"
-            width={500}
-            height={600}
-            priority
-            alt=""
-          />
+          <source media="(min-width: 768px)" width={900} height={700} srcSet="/banner.jpg" />
+          <Image className="bg-secondary" src="/banner-mobile.jpeg" width={500} height={600} priority alt="" />
         </picture>
         <div className="">
           <h1 className={`${dockerOne.className} text-3xl capitalize mb-4 font-bold`}>
             Lorem ipsum dolor sit amet consectetur adipisicing elit.
           </h1>
           <p className="text-lg max-w-lg inline-block">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias saepe itaque
-            ipsam corrupti excepturi nihil similique blanditiis modi placeat inventore?
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias saepe itaque ipsam corrupti excepturi nihil
+            similique blanditiis modi placeat inventore?
           </p>
           I
         </div>
-      </div>
+      </section>
 
       {/* Our partners brands section */}
       <SpotlightSection title="Our partners">
-        <ul
-          className={`grid grid-cols-3 md:grid-cols-6 justify-items-center items-center gap-4 md:gap-8 xl:gap-12`}
-        >
+        <ul className={`grid grid-cols-3 md:grid-cols-6 justify-items-center items-center gap-4 md:gap-8 xl:gap-12`}>
           {ourBrandsList.map(({ title, image }) => (
             <li className="w-fit" key={title}>
               <Image src={image} alt={title} width={200} height={200} />
@@ -121,9 +103,7 @@ export default async function HomePage() {
 
       {/* Top rated products */}
       <Section title="Top rated products">
-        <Suspense
-          fallback={<ProductCardSkeletonGroup count={12} skeletonsVariant="vertical" />}
-        >
+        <Suspense fallback={<ProductCardSkeletonGroup count={12} skeletonsVariant="vertical" />}>
           <ProductsWrapper />
         </Suspense>
       </Section>
@@ -142,15 +122,13 @@ export default async function HomePage() {
             <li className="text-center border-2 rounded p-4" key={title}>
               <article>
                 <h4 className={`text-3xl font-bold`}>{title}</h4>
-                <div className="text-[7rem] text-secondary max-w-[7rem] mx-auto my-8">
-                  {icon}
-                </div>
+                <div className="text-[7rem] text-secondary max-w-[7rem] mx-auto my-8">{icon}</div>
                 <p className="text-justify">{description}</p>
               </article>
             </li>
           ))}
         </ul>
       </Section>
-    </>
+    </main>
   )
 }
