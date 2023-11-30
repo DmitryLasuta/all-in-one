@@ -31,7 +31,7 @@ export const WebsiteNavigation = ({ links }: { links: NavigationLinks[] }) => {
             <li key={title}>
               <Link
                 className={`hover:text-primary transition-colors ${
-                  pathname === href ? 'text-primary' : ''
+                  pathname === href || (href.includes(pathname) && pathname !== '/') ? 'text-primary' : ''
                 }`}
                 href={href}
                 onClick={() => setIsOpen(false)}

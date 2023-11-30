@@ -1,13 +1,12 @@
-import { CategoryCard, CategoryCardSkeletonGroup, ProductCard, ProductCardSkeletonGroup } from '@/components'
-import { Section, SpotlightSection } from '@/components/ui'
+import { CategoryCardSkeletonGroup, ProductCardSkeletonGroup } from '@/components/ui'
+import { RegularSection, SpotlightSection } from '@/components/ui/sections'
 
-import { DatabaseService } from '@/lib/services'
 import { FaFlagCheckered } from 'react-icons/fa'
 import Image from 'next/image'
 import { MdHighQuality } from 'react-icons/md'
 import { RiSecurePaymentFill } from 'react-icons/ri'
-import { Suspense } from 'react'
 import { dockerOne } from '@/app/assets/fonts'
+import dynamic from 'next/dynamic'
 
 const ourBrandsList = [
   { title: 'Converse', image: '/brandsLogo/converse.svg' },
@@ -18,35 +17,13 @@ const ourBrandsList = [
   { title: 'The North Face ', image: '/brandsLogo/TNF.svg' },
 ]
 
-const storeDB = new DatabaseService()
+const Categories = dynamic(() => import('@/components/CategoryList'), {
+  loading: () => <CategoryCardSkeletonGroup count={4} />,
+})
 
-const CategoriesWrapper = async () => {
-  const categories = await storeDB.getAllCategories()
-  await new Promise(resolve => setTimeout(resolve, 5000))
-  return (
-    <ul className="grid grid-flow-dense grid-cols-1 justify-items-center md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
-      {categories.map(category => (
-        <li key={category.id}>
-          <CategoryCard category={category} />
-        </li>
-      ))}
-    </ul>
-  )
-}
-
-const ProductsWrapper = async () => {
-  const topRatedProducts = await storeDB.getTopRatedProducts(12)
-  // await new Promise(resolve => setTimeout(resolve, 50000))
-  return (
-    <ul className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-4">
-      {topRatedProducts.map(product => (
-        <li className="mb-4" key={product.id}>
-          <ProductCard variant="vertical" product={product} />
-        </li>
-      ))}
-    </ul>
-  )
-}
+const TopRatedProducts = dynamic(() => import('@/components/ui/TopRatedProducts'), {
+  loading: () => <ProductCardSkeletonGroup count={10} />,
+})
 
 const ourAdvantagesList = [
   {
@@ -69,7 +46,7 @@ const ourAdvantagesList = [
   },
 ]
 
-export default async function HomePage() {
+export default function HomePage() {
   return (
     <main>
       {/* Banner section */}
@@ -102,21 +79,17 @@ export default async function HomePage() {
       </SpotlightSection>
 
       {/* Top rated products */}
-      <Section title="Top rated products">
-        <Suspense fallback={<ProductCardSkeletonGroup count={12} skeletonsVariant="vertical" />}>
-          <ProductsWrapper />
-        </Suspense>
-      </Section>
+      <RegularSection title="Top rated products">
+        <TopRatedProducts />
+      </RegularSection>
 
       {/* Categories list section */}
       <SpotlightSection title="Categories">
-        <Suspense fallback={<CategoryCardSkeletonGroup count={4} />}>
-          <CategoriesWrapper />
-        </Suspense>
+        <Categories />
       </SpotlightSection>
 
       {/* Our advantages */}
-      <Section title="Why Choose Our Store?">
+      <RegularSection title="Why Choose Our Store?">
         <ul className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-4">
           {ourAdvantagesList.map(({ title, description, icon }) => (
             <li className="text-center border-2 rounded p-4" key={title}>
@@ -128,7 +101,7 @@ export default async function HomePage() {
             </li>
           ))}
         </ul>
-      </Section>
+      </RegularSection>
     </main>
   )
 }

@@ -42,10 +42,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <WebsiteNavigation links={navigationLinks} />
             <Logo />
             <div className="">
-              <button
-                className="block text-2xl p-2 lg:border-l-2 lg:pl-4 lg:text-3xl"
-                type="button"
-              >
+              <button className="block text-2xl p-2 lg:border-l-2 lg:pl-4 lg:text-3xl" type="button">
                 <PiShoppingCartBold />
               </button>
             </div>
