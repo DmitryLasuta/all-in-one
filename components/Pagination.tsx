@@ -18,6 +18,7 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
   }
 
   const allPages = generatePagination(currentPage, totalPages)
+  console.log(allPages)
 
   return (
     <div className="inline-flex">
@@ -34,7 +35,7 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
 
           return (
             <PaginationNumber
-              key={page}
+              key={index}
               href={createPageURL(page)}
               page={page}
               position={position}
@@ -60,20 +61,12 @@ function PaginationNumber({
   position?: 'first' | 'last' | 'middle' | 'single'
   isActive: boolean
 }) {
-  // const className = clsx('flex h-10 w-10 items-center justify-center text-sm border', {
-  //   'rounded-l-md': position === 'first' || position === 'single',
-  //   'rounded-r-md': position === 'last' || position === 'single',
-  //   'z-10 bg-blue-600 border-blue-600 text-white': isActive,
-  //   'hover:bg-gray-100': !isActive && position !== 'middle',
-  //   'text-gray-300': position === 'middle',
-  // })
-
-  const className = `flex h-10 w-10 items-center justify-center text-sm border 
+  const className = `flex h-10 w-10 items-center justify-center text-sm border-y-2 border transition-colors
     ${position === 'first' || position === 'single' ? 'rounded-l-md' : ''} 
     ${position === 'last' || position === 'single' ? 'rounded-r-md' : ''} 
-    ${isActive ? 'z-10 bg-blue-600 border-blue-600 text-white' : ''} 
-    ${!isActive && position !== 'middle' ? 'hover:bg-gray-100' : ''} 
-    ${position === 'middle' ? 'text-gray-300' : ''}`
+    ${isActive ? 'z-10 bg-accent border-accent font-bold' : ''} 
+    ${!isActive && position !== 'middle' ? 'hover:bg-accent' : ''} 
+    ${position === 'middle' ? 'text-typography' : ''}`
 
   return isActive || position === 'middle' ? (
     <div className={className}>{page}</div>
@@ -93,15 +86,8 @@ function PaginationArrow({
   direction: 'left' | 'right'
   isDisabled?: boolean
 }) {
-  // const className = clsx('flex h-10 w-10 items-center justify-center rounded-md border', {
-  //   'pointer-events-none text-gray-300': isDisabled,
-  //   'hover:bg-gray-100': !isDisabled,
-  //   'mr-2 md:mr-4': direction === 'left',
-  //   'ml-2 md:ml-4': direction === 'right',
-  // })
-
-  const className = `flex h-10 w-10 items-center justify-center rounded-md border 
-    ${isDisabled ? 'pointer-events-none text-gray-300' : 'hover:bg-gray-100'}
+  const className = `flex h-10 w-10 items-center justify-center rounded-md border-2 transition-colors
+    ${isDisabled ? 'pointer-events-none' : 'bg-accent'}
     ${direction === 'left' ? 'mr-2 md:mr-4' : direction === 'right' ? 'ml-2 md:ml-4' : ''}`
 
   const icon = direction === 'left' ? <MdArrowBack className="w-4" /> : <MdArrowForward className="w-4" />

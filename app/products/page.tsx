@@ -1,5 +1,6 @@
 import { DatabaseService } from '@/lib/services'
 import { Metadata } from 'next'
+import Pagination from '@/components/Pagination'
 
 export const metadata: Metadata = {
   title: 'All in One | Products',
@@ -14,22 +15,20 @@ interface ProductsPageProps {
   }
 }
 
+const ITEMS_PER_PAGE = 1
 const storeDB = new DatabaseService()
+const totalPages = Math.ceil((await storeDB.getAllProducts()).length / ITEMS_PER_PAGE)
 
 export default async function ProductsPage({ searchParams }: ProductsPageProps) {
   const category = searchParams.category ?? 'all'
-  // const categories = await storeDB.getAllCategories()
-
-  if (!category || category === 'all') {
-    const allProducts = await storeDB.getAllProducts()
-  }
-
-  console.log(searchParams)
+  const currentPage = Number(searchParams.page) || 1
 
   return (
     <>
       <h1>Products Page</h1>
-      {/* <ProductGrid /> */}
+      <div className="mt-5 flex w-full justify-center">
+        <Pagination totalPages={totalPages} />
+      </div>
     </>
   )
 }
