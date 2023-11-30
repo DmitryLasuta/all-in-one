@@ -1,9 +1,8 @@
+import type { Category } from '@/lib/types'
 import { ColumnGrid } from '@/components/ui/common'
 import { DatabaseService } from '@/lib/services'
 
-const storeDB = new DatabaseService()
-
-export const ProductList = async () => {
+export const ProductList = async ({ categoryName }: { categoryName?: Category['name'] }) => {
   return (
     <ColumnGrid>
       {Array.from({ length: 20 }).map((_, index) => (

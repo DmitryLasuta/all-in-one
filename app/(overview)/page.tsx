@@ -17,7 +17,7 @@ const ourBrandsList = [
   { title: 'The North Face ', image: '/brandsLogo/TNF.svg' },
 ]
 
-const Categories = dynamic(() => import('@/components/CategoryList'), {
+const Categories = dynamic(() => import('@/components/ui/CategoryList'), {
   loading: () => <CategoryCardSkeletonGroup count={4} />,
 })
 

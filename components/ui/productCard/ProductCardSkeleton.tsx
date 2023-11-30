@@ -37,7 +37,7 @@ export const ProductCardSkeleton = ({ variant = 'vertical' }: { variant?: 'verti
 
 export const ProductCardSkeletonGroup = ({
   count,
-  skeletonsVariant = 'horizontal',
+  skeletonsVariant,
 }: {
   count: number
   skeletonsVariant?: 'vertical' | 'horizontal'
