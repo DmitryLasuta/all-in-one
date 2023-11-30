@@ -20,7 +20,7 @@ const socialLinks = [
 
 export const SocialLinks = () => {
   return (
-    <ul className="flex">
+    <ul className="flex items-center justify-between gap-2 text-2xl">
       {socialLinks.map(({ title, href, icon }) => (
         <li key={title}>
           <a
