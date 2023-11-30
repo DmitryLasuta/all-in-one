@@ -1,4 +1,4 @@
-export const ProductCardSkeleton = ({ variant = 'horizontal' }: { variant?: 'vertical' | 'horizontal' }) => {
+export const ProductCardSkeleton = ({ variant = 'vertical' }: { variant?: 'vertical' | 'horizontal' }) => {
   const getRandomBoolean = (): boolean => Math.random() < 0.5
   return (
     <div className={`bg-primary`}>

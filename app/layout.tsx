@@ -1,6 +1,6 @@
 import './globals.css'
 
-import { ContactInfo, CopyrightInfo, Logo, SocialLinks } from '@/components/ui'
+import { ContactInfo, CopyrightInfo, Logo, SocialLinks } from '@/components/ui/common'
 
 import type { Metadata } from 'next'
 import { NavigationLinks } from '@/lib/types'

@@ -15,7 +15,6 @@ export const CategoryCardSkeleton = () => {
 
 export const CategoryCardSkeletonGroup = ({ count }: { count: number }) => {
   const skeletons = new Array(count).fill(0).map((_, index) => <CategoryCardSkeleton key={index} />)
-
   return (
     <div
       role="status"

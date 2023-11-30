@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { NavigationLinks } from '@/lib/types'
+import type { NavigationLinks } from '@/lib/types'
 import { useSearchParams } from 'next/navigation'
 
 export const ParametersList = ({ links, caption }: { links: NavigationLinks[]; caption?: string }) => {

@@ -20,7 +20,7 @@ export default async function ProductsLayout({ children }: { children: React.Rea
       <SidePanel title="Filters & Sorting">
         <ParametersList caption="Categories" links={categoriesLinks} />
       </SidePanel>
-      <div className="flex-1">{children}</div>
+      <main className="flex-1 px-4">{children}</main>
     </div>
   )
 }

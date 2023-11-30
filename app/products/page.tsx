@@ -27,9 +27,9 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
   console.log(searchParams)
 
   return (
-    <main className="px-4">
+    <>
       <h1>Products Page</h1>
       {/* <ProductGrid /> */}
-    </main>
+    </>
   )
 }

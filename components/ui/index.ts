@@ -1,4 +1,3 @@
-export * from './SocialLinks'
 export * from './SidePanel'
 export * from './categoryCart'
 export * from './productCard'
