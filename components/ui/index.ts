@@ -1,5 +1,5 @@
-export * from './SidePanel'
 export * from './categoryCart'
 export * from './productCard'
-export * from './ColumnGrid'
+
+export * from './SidePanel'
 export * from './TopRatedProducts'

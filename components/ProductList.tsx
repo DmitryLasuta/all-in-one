@@ -1,4 +1,4 @@
-import { ColumnGrid } from '@/components/ui'
+import { ColumnGrid } from '@/components/ui/common'
 import { DatabaseService } from '@/lib/services'
 
 const storeDB = new DatabaseService()

@@ -21,8 +21,9 @@ const Categories = dynamic(() => import('@/components/CategoryList'), {
   loading: () => <CategoryCardSkeletonGroup count={4} />,
 })
 
+const topRatedProductsCount = 12
 const TopRatedProducts = dynamic(() => import('@/components/ui/TopRatedProducts'), {
-  loading: () => <ProductCardSkeletonGroup count={10} />,
+  loading: () => <ProductCardSkeletonGroup count={topRatedProductsCount} />,
 })
 
 const ourAdvantagesList = [
@@ -79,8 +80,8 @@ export default function HomePage() {
       </SpotlightSection>
 
       {/* Top rated products */}
-      <RegularSection title="Top rated products">
-        <TopRatedProducts />
+      <RegularSection title={`Top ${topRatedProductsCount} Products`}>
+        <TopRatedProducts count={topRatedProductsCount} />
       </RegularSection>
 
       {/* Categories list section */}

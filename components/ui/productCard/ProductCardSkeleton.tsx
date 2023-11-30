@@ -1,3 +1,5 @@
+import { ColumnGrid } from '@/components/ui/common'
+
 export const ProductCardSkeleton = ({ variant = 'vertical' }: { variant?: 'vertical' | 'horizontal' }) => {
   const getRandomBoolean = (): boolean => Math.random() < 0.5
   return (
@@ -41,12 +43,12 @@ export const ProductCardSkeletonGroup = ({
   skeletonsVariant?: 'vertical' | 'horizontal'
 }) => {
   return (
-    <ul className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-4">
+    <ColumnGrid>
       {[...Array(count)].map((_, index) => (
         <li className="mb-4" key={index}>
           <ProductCardSkeleton variant={skeletonsVariant} />
         </li>
       ))}
-    </ul>
+    </ColumnGrid>
   )
 }
