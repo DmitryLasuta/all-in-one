@@ -1,6 +1,7 @@
 import { DatabaseService } from '@/lib/services'
 import { Metadata } from 'next'
 import Pagination from '@/components/Pagination'
+import { Search } from '@/components/Search'
 
 export const metadata: Metadata = {
   title: 'All in One | Products',
@@ -26,6 +27,7 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
   return (
     <>
       <h1>Products Page</h1>
+      <Search />
       <div className="mt-5 flex w-full justify-center">
         <Pagination totalPages={totalPages} />
       </div>
