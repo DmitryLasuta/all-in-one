@@ -1,6 +1,6 @@
-export * from './Button'
-export * from './Section'
-export * from './Logo'
-export * from './ContactInfo'
-export * from './CopyrightInfo'
-export * from './SocialLinks'
+export * from './categoryCart'
+export * from './productCard'
+
+export * from './SidePanel'
+export * from './TopRatedProducts'
+export * from './CategoryList'

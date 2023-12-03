@@ -1,21 +1,16 @@
-export const ProductCardSkeleton = ({
-  variant = 'horizontal',
-}: {
-  variant?: 'vertical' | 'horizontal'
-}) => {
+import { ColumnGrid } from '@/components/ui/common'
+
+export const ProductCardSkeleton = ({ variant = 'vertical' }: { variant?: 'vertical' | 'horizontal' }) => {
   const getRandomBoolean = (): boolean => Math.random() < 0.5
   return (
     <div className={`bg-primary`}>
       <div
         role="status"
         aria-label="loading products"
-        className={`animate-pulse break-inside-avoid flex flex-col ${
-          variant === 'horizontal' ? 'lg:flex-row' : ''
-        } gap-4 lg:gap-8 items-center ${
+        className={`animate-pulse break-inside-avoid flex flex-col
+        border-2 bg-[white] h-fit ${variant === 'horizontal' ? 'lg:flex-row' : ''} gap-4 lg:gap-8 items-center ${
           variant === 'horizontal' ? 'lg:items-start' : ''
-        }  bg-primary p-4 rounded ${
-          variant === 'vertical' ? 'text-center' : ''
-        } w-full h-full`}
+        }  bg-primary p-4 rounded ${variant === 'vertical' ? 'text-center' : ''} w-full h-full`}
       >
         {/*  */}
         <div
@@ -42,18 +37,18 @@ export const ProductCardSkeleton = ({
 
 export const ProductCardSkeletonGroup = ({
   count,
-  skeletonsVariant = 'horizontal',
+  skeletonsVariant,
 }: {
   count: number
   skeletonsVariant?: 'vertical' | 'horizontal'
 }) => {
   return (
-    <ul className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-4">
+    <ColumnGrid>
       {[...Array(count)].map((_, index) => (
         <li className="mb-4" key={index}>
           <ProductCardSkeleton variant={skeletonsVariant} />
         </li>
       ))}
-    </ul>
+    </ColumnGrid>
   )
 }

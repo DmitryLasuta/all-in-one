@@ -1,3 +1,3 @@
-export * from './NavigationMenu'
-export * from './categoryCart'
-export * from './productCard'
+export * from './WebsiteNavigation'
+export * from './Pagination'
+export * from './ProductList'
