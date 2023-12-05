@@ -1,10 +1,11 @@
 import { CategoryCardSkeletonGroup, ProductCardSkeletonGroup } from '@/components/ui'
-import { RegularSection, SpotlightSection } from '@/components/ui/sections'
 
+import { Container } from '@/components/ui/common'
 import { FaFlagCheckered } from 'react-icons/fa'
 import Image from 'next/image'
 import { MdHighQuality } from 'react-icons/md'
 import { RiSecurePaymentFill } from 'react-icons/ri'
+import { Section } from '@/components/ui/common'
 import { dockerOne } from '@/app/assets/fonts'
 import dynamic from 'next/dynamic'
 
@@ -51,24 +52,26 @@ export default function HomePage() {
   return (
     <main>
       {/* Banner section */}
-      <section className="container py-16 text-center lg:text-right w-full flex flex-col lg:flex-row items-center gap-4 lg:gap-10">
-        <picture>
-          <source media="(min-width: 768px)" width={900} height={700} srcSet="/banner.jpg" />
-          <Image className="bg-secondary" src="/banner-mobile.jpeg" width={500} height={600} priority alt="" />
-        </picture>
-        <div className="">
-          <h1 className={`${dockerOne.className} text-3xl capitalize mb-4 font-bold`}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          </h1>
-          <p className="text-lg max-w-lg inline-block">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias saepe itaque ipsam corrupti excepturi nihil
-            similique blanditiis modi placeat inventore?
-          </p>
-          I
-        </div>
-      </section>
+      <Container>
+        <section className="py-16 text-center lg:text-right w-full flex flex-col lg:flex-row items-center gap-4 lg:gap-10">
+          <picture>
+            <source media="(min-width: 768px)" width={900} height={700} srcSet="/banner.jpg" />
+            <Image className="bg-secondary" src="/banner-mobile.jpeg" width={500} height={600} priority alt="" />
+          </picture>
+          <div className="">
+            <h1 className={`${dockerOne.className} text-2xl capitalize mb-4 font-bold`}>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </h1>
+            <p className="text-lg max-w-lg inline-block">
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias saepe itaque ipsam corrupti excepturi
+              nihil similique blanditiis modi placeat inventore?
+            </p>
+            I
+          </div>
+        </section>
+      </Container>
       {/* Our partners brands section */}
-      <SpotlightSection title="Our partners">
+      <Section title="Our partners" hasBackground={true}>
         <ul className={`grid grid-cols-3 md:grid-cols-6 justify-items-center items-center gap-4 md:gap-8 xl:gap-12`}>
           {ourBrandsList.map(({ title, image }) => (
             <li className="w-fit" key={title}>
@@ -76,17 +79,17 @@ export default function HomePage() {
             </li>
           ))}
         </ul>
-      </SpotlightSection>
+      </Section>
       {/* Top rated products */}
-      <RegularSection title={`Top ${topRatedProductsCount} Products`}>
+      <Section title={`Top ${topRatedProductsCount} Products`}>
         <TopRatedProducts count={topRatedProductsCount} />
-      </RegularSection>
+      </Section>
       {/* Categories list section */}
-      <SpotlightSection title="Categories">
+      <Section title="Categories" hasBackground={true}>
         <Categories />
-      </SpotlightSection>
+      </Section>
       {/* Our advantages */}
-      <RegularSection title="Why Choose Our Store?">
+      <Section title="Why Choose Our Store?">
         <ul className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-[70%] md:max-w-full mx-auto">
           {ourAdvantagesList.map(({ title, description, icon }) => (
             <li className="text-center border-2 rounded p-4" key={title}>
@@ -98,10 +101,7 @@ export default function HomePage() {
             </li>
           ))}
         </ul>
-      </RegularSection>
-      <RegularSection title="Testimonial">
-        <ProductCardSkeletonGroup count={topRatedProductsCount} />,
-      </RegularSection>
+      </Section>
     </main>
   )
 }
