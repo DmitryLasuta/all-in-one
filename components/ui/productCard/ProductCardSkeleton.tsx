@@ -1,4 +1,4 @@
-import { ColumnGrid } from '@/components/ui/common'
+import { Grid } from '@/components/ui/common'
 
 export const ProductCardSkeleton = () => {
   const getRandomBoolean = (): boolean => Math.random() < 0.5
@@ -34,12 +34,12 @@ export const ProductCardSkeleton = () => {
 
 export const ProductCardSkeletonGroup = ({ count }: { count: number }) => {
   return (
-    <ColumnGrid>
+    <Grid>
       {[...Array(count)].map((_, index) => (
         <li className="mb-4" key={index}>
           <ProductCardSkeleton />
         </li>
       ))}
-    </ColumnGrid>
+    </Grid>
   )
 }

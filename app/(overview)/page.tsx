@@ -21,7 +21,7 @@ const Categories = dynamic(() => import('@/components/ui/CategoryList'), {
   loading: () => <CategoryCardSkeletonGroup count={4} />,
 })
 
-const topRatedProductsCount = 12
+const topRatedProductsCount = 8
 const TopRatedProducts = dynamic(() => import('@/components/ui/TopRatedProducts'), {
   loading: () => <ProductCardSkeletonGroup count={topRatedProductsCount} />,
 })
