@@ -1,7 +1,6 @@
 import { Grid } from '@/components/ui/common'
 
 export const ProductCardSkeleton = () => {
-  const getRandomBoolean = (): boolean => Math.random() < 0.5
   return (
     <div className={`bg-primary`}>
       <div
@@ -10,22 +9,22 @@ export const ProductCardSkeleton = () => {
         className={`animate-pulse break-inside-avoid flex flex-col
         border-2 bg-[white] h-fit gap-4 lg:gap-8 items-center bg-primary p-4 rounded w-full`}
       >
-        <div
-          className={`w-[250px] mb-4 object-contain bg-[#c7c7c7] rounded ${
-            getRandomBoolean() ? 'h-[450px]' : 'h-[300px]'
-          }`}
-        ></div>
-        <div>
-          <div className="flex items-center gap-4 justify-between mb-4">
-            <div className="w-[80px] h-[20px] bg-[#616161]"></div>
-            <div className="bg-[#616161] w-[60px] h-[20px]"></div>
-            <div>
-              <div className="w-[80px] h-[40px] bg-[#616161]"></div>
-            </div>
-          </div>
-          <div className="w-full h-[20px] bg-[#616161] mb-2"></div>
-          <div className="w-3/4 h-[20px] bg-[#616161] mb-2"></div>
-          <div className="w-1/2 h-[20px] bg-[#616161] mb-2"></div>
+        {/* image */}
+        <div className={`w-[250px] mb-4 object-contain bg-[#c7c7c7] rounded h-[250px]`}></div>
+        {/* Add to cart button */}
+        <div className="w-full h-[35px] bg-[#616161] rounded"></div>
+        {/* Title */}
+        <div className="w-full">
+          <div className="w-full h-[20px] bg-[#c7c7c7] mb-2 rounded"></div>
+          <div className="w-3/4 h-[20px] bg-[#c7c7c7] mb-2 rounded"></div>
+          <div className="w-1/2 h-[20px] bg-[#c7c7c7] mb-2 rounded"></div>
+        </div>
+        {/* Price and Rating */}
+        <div className="w-full flex justify-between items-center rounded">
+          {/* Price */}
+          <div className="w-[100px] h-[30px] bg-[#c7c7c7] rounded"></div>
+          {/* Rating */}
+          <div className="w-[100px] h-[25px] bg-[#c7c7c7] rounded"></div>
         </div>
       </div>
     </div>

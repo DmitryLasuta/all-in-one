@@ -21,7 +21,7 @@ export const ProductList = async ({
         <p>No products found</p>
       ) : (
         products.map(product => (
-          <li key={product.id}>
+          <li className="w-[90%] sm:w-[60%] md:w-full mx-auto" key={product.id}>
             <ProductCard product={product} />
           </li>
         ))

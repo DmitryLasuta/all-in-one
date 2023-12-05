@@ -7,7 +7,7 @@ export default async function TopRatedProducts({ count = 5 }: { count?: number }
   return (
     <Grid>
       {topRatedProducts.map(product => (
-        <li className="mb-4" key={product.id}>
+        <li className="sm:w-[60%] md:w-full sm:mx-auto" key={product.id}>
           <ProductCard product={product} />
         </li>
       ))}

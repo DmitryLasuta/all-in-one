@@ -67,7 +67,6 @@ export default function HomePage() {
           I
         </div>
       </section>
-
       {/* Our partners brands section */}
       <SpotlightSection title="Our partners">
         <ul className={`grid grid-cols-3 md:grid-cols-6 justify-items-center items-center gap-4 md:gap-8 xl:gap-12`}>
@@ -78,20 +77,17 @@ export default function HomePage() {
           ))}
         </ul>
       </SpotlightSection>
-
       {/* Top rated products */}
       <RegularSection title={`Top ${topRatedProductsCount} Products`}>
         <TopRatedProducts count={topRatedProductsCount} />
       </RegularSection>
-
       {/* Categories list section */}
       <SpotlightSection title="Categories">
         <Categories />
       </SpotlightSection>
-
       {/* Our advantages */}
       <RegularSection title="Why Choose Our Store?">
-        <ul className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-4">
+        <ul className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-[70%] md:max-w-full mx-auto">
           {ourAdvantagesList.map(({ title, description, icon }) => (
             <li className="text-center border-2 rounded p-4" key={title}>
               <article>
@@ -102,6 +98,9 @@ export default function HomePage() {
             </li>
           ))}
         </ul>
+      </RegularSection>
+      <RegularSection title="Testimonial">
+        <ProductCardSkeletonGroup count={topRatedProductsCount} />,
       </RegularSection>
     </main>
   )
