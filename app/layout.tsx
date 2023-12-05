@@ -49,7 +49,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </div>
           </div>
         </header>
-        {/* page content */}
+        {/* pages content */}
         <div className="min-h-screen pt-[4.7rem]">{children}</div>
         {/* footer */}
         <footer className="bg-accent p-4 text-secondary xl:bg-fluid bg-no-repeat bg-fixed border-t-2">

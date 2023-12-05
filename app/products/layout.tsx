@@ -15,8 +15,8 @@ export default async function ProductsLayout({ children }: { children: React.Rea
     })),
   ]
   return (
-    <div className="grid grid-cols-1 md:grid-cols-[fit-content(300px)_auto] gap-8 min-h-screen py-8">
-      <SidePanel title="Filters & Sorting">
+    <div className="container grid grid-cols-1 md:grid-cols-[fit-content(300px)_auto] gap-8 min-h-screen py-8">
+      <SidePanel>
         <ParametersList parameter={PRODUCTS_SEARCH_PARAMS.category} caption="Categories" links={categoriesLinks} />
       </SidePanel>
       <main>{children}</main>
