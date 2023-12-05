@@ -29,8 +29,8 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
 
   return (
     <>
-      <h1 className="text-3xl text-center md:text-right font-bold uppercase mb-4">
-        {category ? 'All Products' : 'All Products'}
+      <h1 className="text-3xl text-center md:text-left font-bold uppercase mb-4">
+        {!category || category === 'all' ? 'All Products' : category}
       </h1>
       <div className="flex flex-col gap-4 mb-8 lg:flex-row">
         <Search />

@@ -1,19 +1,45 @@
 'use client'
 
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+
 import Link from 'next/link'
 import type { NavigationLinks } from '@/lib/types'
-import { useSearchParams } from 'next/navigation'
 
-export const ParametersList = ({ links, caption }: { links: NavigationLinks[]; caption?: string }) => {
+interface SidePanelProps {
+  parameter: string
+  links: NavigationLinks[]
+  caption: string
+}
+
+export const ParametersList = ({ links, caption, parameter }: SidePanelProps) => {
   const searchParams = useSearchParams()
+  const { replace } = useRouter()
+  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const href = event.target.value
+    replace(href)
+  }
+
   return (
     <>
-      {caption && <p className="my-4 text-lg">{caption}</p>}
-      <ul className="pl-4 capitalize">
+      <div className="flex items-center justify-between gap-4">
+        <h4 className="my-4 text-lg">{caption}</h4>
+        <select
+          className="capitalize flex-1 p-2 rounded md:hidden"
+          defaultValue={searchParams.get(parameter) ?? links[0].href}
+          onChange={handleChange}
+        >
+          {links.map(({ href, title }) => (
+            <option className="capitalize p-4" value={href} key={title}>
+              {title}
+            </option>
+          ))}
+        </select>
+      </div>
+      <ul className="hidden pl-4 capitalize md:block">
         {links.map(({ href, title }) => (
           <li
             className={`hover:scale-105 hover:font-bold transition-transform ${
-              searchParams.get('category') === title.toLocaleLowerCase() ? 'font-bold scale-105' : ''
+              searchParams.get(parameter) === title.toLocaleLowerCase() ? 'font-bold scale-105' : ''
             } mb-1`}
             key={title}
           >
