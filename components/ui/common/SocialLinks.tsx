@@ -22,14 +22,13 @@ export const SocialLinks = () => {
   return (
     <ul className="flex items-center justify-between gap-2 text-2xl">
       {socialLinks.map(({ title, href, icon }) => (
-        <li key={title}>
+        <li key={title} className="hover:text-primary transition-colors">
           <a
             href={href}
             title={`Contact us on ${title}`}
             aria-label={`Contact us on ${title}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-2"
           >
             {icon}
           </a>
