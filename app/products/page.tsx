@@ -17,7 +17,7 @@ interface ProductsPageProps {
   searchParams: Partial<typeof PRODUCTS_SEARCH_PARAMS>
 }
 
-const ITEMS_PER_PAGE = 10
+const ITEMS_PER_PAGE = 8
 
 export default async function ProductsPage({ searchParams }: ProductsPageProps) {
   const category = searchParams.category ?? ''

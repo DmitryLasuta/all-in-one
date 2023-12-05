@@ -1,7 +1,8 @@
 import './globals.css'
 
-import { ContactInfo, CopyrightInfo, Logo, SocialLinks } from '@/components/ui/common'
+import { ContactInfo, CopyrightInfo, SocialLinks } from '@/components/ui'
 
+import { Logo } from '@/components/ui/common'
 import type { Metadata } from 'next'
 import { NavigationLinks } from '@/lib/types'
 import { PiShoppingCartBold } from 'react-icons/pi'
@@ -38,7 +39,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={`${redHatDisplay.className}`}>
         {/* header */}
         <header className="bg-accent p-4 text-secondary xl:bg-fluid bg-no-repeat bg-fixed fixed top-0 w-full z-[100] border-b-2">
-          <div className="flex items-center justify-between lg:justify-start lg:lg:gap-8 lg:px-10">
+          <div className="flex items-center justify-between lg:justify-start lg:lg:gap-8">
             <WebsiteNavigation links={navigationLinks} />
             <Logo />
             <div className="">
@@ -48,7 +49,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </div>
           </div>
         </header>
-        {/* main content */}
+        {/* page content */}
         <div className="min-h-screen pt-[4.7rem]">{children}</div>
         {/* footer */}
         <footer className="bg-accent p-4 text-secondary xl:bg-fluid bg-no-repeat bg-fixed border-t-2">
