@@ -10,7 +10,7 @@ export const ProductCardSkeleton = () => {
         border-2 bg-[white] h-fit gap-4 lg:gap-8 items-center bg-primary p-4 rounded w-full`}
       >
         {/* image */}
-        <div className={`w-[250px] mb-4 object-contain bg-[#c7c7c7] rounded h-[250px]`}></div>
+        <div className={`w-[90%] mb-4 object-contain bg-[#c7c7c7] rounded h-[250px]`}></div>
         {/* Add to cart button */}
         <div className="w-full h-[35px] bg-[#616161] rounded"></div>
         {/* Title */}
