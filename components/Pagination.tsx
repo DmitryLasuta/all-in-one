@@ -20,7 +20,7 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
   const allPages = generatePagination(currentPage, totalPages)
 
   return (
-    <div className="inline-flex">
+    <div className="inline-flex self-center">
       <PaginationArrow direction="left" href={createPageURL(currentPage - 1)} isDisabled={currentPage <= 1} />
 
       <div className="flex -space-x-px">
@@ -60,7 +60,7 @@ function PaginationNumber({
   position?: 'first' | 'last' | 'middle' | 'single'
   isActive: boolean
 }) {
-  const className = `flex h-10 w-10 items-center justify-center text-sm border-y-2 border transition-colors
+  const className = `flex h-8 w-8 md:h-10 md:w-10 items-center justify-center text-sm border-y-2 border transition-colors
     ${position === 'first' || position === 'single' ? 'rounded-l-md' : ''} 
     ${position === 'last' || position === 'single' ? 'rounded-r-md' : ''} 
     ${isActive ? 'z-10 bg-accent border-accent font-bold' : ''} 
@@ -85,7 +85,7 @@ function PaginationArrow({
   direction: 'left' | 'right'
   isDisabled?: boolean
 }) {
-  const className = `flex h-10 w-10 items-center justify-center rounded-md border-2 transition-colors
+  const className = `flex w-8 h-8 md:w-10 md:h-10 items-center justify-center rounded-md border-2 transition-colors
     ${isDisabled ? 'pointer-events-none' : 'bg-accent'}
     ${direction === 'left' ? 'mr-2 md:mr-4' : direction === 'right' ? 'ml-2 md:ml-4' : ''}`
 

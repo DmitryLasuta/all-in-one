@@ -73,7 +73,7 @@ export default function HomePage() {
         <ul className={`grid grid-cols-3 md:grid-cols-6 justify-items-center items-center gap-4 md:gap-8 xl:gap-12`}>
           {ourBrandsList.map(({ title, image }) => (
             <li className="w-fit" key={title}>
-              <Image src={image} alt={title} width={200} height={200} />
+              <Image className="w-auto max-h-[10rem]" src={image} alt={title} width={200} height={200} />
             </li>
           ))}
         </ul>

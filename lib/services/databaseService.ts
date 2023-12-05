@@ -4,8 +4,8 @@ import { executeSqlQuery } from '@/lib/utils'
 import { sql } from '@vercel/postgres'
 
 export default class DatabaseService {
-  public getTotalPages = async (query: string, options: { itemsPerPage?: number; category?: Category['name'] }) => {
-    const { itemsPerPage = 10, category } = options
+  public getTotalPages = async (query: string, options: { itemsPerPage: number; category?: Category['name'] }) => {
+    const { itemsPerPage, category } = options
 
     if (!category || category === 'all') {
       const { rows }: { rows: { count: number }[] } = await sql`

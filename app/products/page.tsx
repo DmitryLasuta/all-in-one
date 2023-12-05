@@ -2,8 +2,10 @@ import { DatabaseService } from '@/lib/services'
 import { Metadata } from 'next'
 import { PRODUCTS_SEARCH_PARAMS } from '@/lib/utils'
 import Pagination from '@/components/Pagination'
+import { ProductCardSkeletonGroup } from '@/components/ui'
 import { ProductList } from '@/components'
 import { Search } from '@/components/Search'
+import { Suspense } from 'react'
 
 export const metadata: Metadata = {
   title: 'Products | All in One',
@@ -14,24 +16,34 @@ export const metadata: Metadata = {
 interface ProductsPageProps {
   searchParams: Partial<typeof PRODUCTS_SEARCH_PARAMS>
 }
-const storeDB = new DatabaseService()
+
+const ITEMS_PER_PAGE = 10
 
 export default async function ProductsPage({ searchParams }: ProductsPageProps) {
   const category = searchParams.category ?? ''
   const currentPage = Number(searchParams.page) ?? 1
-  const totalPages = await storeDB.getTotalPages(searchParams.searchQuery ?? '', {
+  const totalPages = await new DatabaseService().getTotalPages(searchParams.query ?? '', {
     category,
-    itemsPerPage: 12,
+    itemsPerPage: ITEMS_PER_PAGE,
   })
 
   return (
     <>
-      <h1 className="text-3xl font-bold uppercase mb-4">{category ? 'All Products' : 'All Products'}</h1>
-      <div className="flex items-center gap-4 mb-8">
+      <h1 className="text-3xl text-center md:text-right font-bold uppercase mb-4">
+        {category ? 'All Products' : 'All Products'}
+      </h1>
+      <div className="flex flex-col gap-4 mb-8 lg:flex-row">
         <Search />
-        <Pagination totalPages={totalPages} />
+        {totalPages > 1 && <Pagination totalPages={totalPages} />}
       </div>
-      <ProductList query={searchParams.searchQuery ?? ''} currentPage={currentPage} category={category} />
+      <Suspense fallback={<ProductCardSkeletonGroup count={ITEMS_PER_PAGE} />}>
+        <ProductList
+          query={searchParams.query ?? ''}
+          currentPage={currentPage}
+          itemsPerPage={ITEMS_PER_PAGE}
+          category={category}
+        />
+      </Suspense>
     </>
   )
 }

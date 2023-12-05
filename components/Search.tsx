@@ -16,8 +16,8 @@ export const Search = () => {
     const params = new URLSearchParams(searchParams)
     params.set(PRODUCTS_SEARCH_PARAMS.page, '1')
 
-    if (term) params.set(PRODUCTS_SEARCH_PARAMS.searchQuery, term)
-    else params.delete(PRODUCTS_SEARCH_PARAMS.searchQuery)
+    if (term) params.set(PRODUCTS_SEARCH_PARAMS.query, term)
+    else params.delete(PRODUCTS_SEARCH_PARAMS.query)
 
     replace(`${pathname}?${params.toString()}`)
   }, 300)
