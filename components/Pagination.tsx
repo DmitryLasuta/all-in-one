@@ -1,10 +1,10 @@
 'use client'
 
 import { MdArrowBack, MdArrowForward } from 'react-icons/md'
+import { PRODUCTS_SEARCH_PARAMS, generatePagination } from '@/lib/utils'
 import { usePathname, useSearchParams } from 'next/navigation'
 
 import Link from 'next/link'
-import { generatePagination } from '@/lib/utils'
 
 export default function Pagination({ totalPages }: { totalPages: number }) {
   const pathname = usePathname()
@@ -13,7 +13,7 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
 
   const createPageURL = (pageNumber: number | string) => {
     const params = new URLSearchParams(searchParams)
-    params.set('page', pageNumber.toString())
+    params.set(PRODUCTS_SEARCH_PARAMS.page, pageNumber.toString())
     return `${pathname}?${params.toString()}`
   }
 

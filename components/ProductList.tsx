@@ -1,15 +1,25 @@
-import type { Category } from '@/lib/types'
-import { ColumnGrid } from '@/components/ui/common'
+import { Category } from '@/lib/types'
 import { DatabaseService } from '@/lib/services'
+import { Grid } from '@/components/ui/common'
+import { ProductCard } from '@/components/ui/'
 
-export const ProductList = async ({ categoryName }: { categoryName?: Category['name'] }) => {
+export const ProductList = async ({
+  query,
+  currentPage,
+  category,
+}: {
+  query: string
+  currentPage: number
+  category?: Category['name']
+}) => {
+  const products = await new DatabaseService().searchProducts(query, currentPage, 12, category)
   return (
-    <ColumnGrid>
-      {Array.from({ length: 20 }).map((_, index) => (
-        <div key={index} className="mb-4">
-          {/* <ProductCardSkeleton variant="vertical" /> */}
-        </div>
+    <Grid>
+      {products.map(product => (
+        <li key={product.id}>
+          <ProductCard product={product} />
+        </li>
       ))}
-    </ColumnGrid>
+    </Grid>
   )
 }

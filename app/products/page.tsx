@@ -1,36 +1,37 @@
 import { DatabaseService } from '@/lib/services'
 import { Metadata } from 'next'
+import { PRODUCTS_SEARCH_PARAMS } from '@/lib/utils'
 import Pagination from '@/components/Pagination'
+import { ProductList } from '@/components'
 import { Search } from '@/components/Search'
 
 export const metadata: Metadata = {
-  title: 'All in One | Products',
+  title: 'Products | All in One',
   description:
     'Explore a curated collection of top-tier products on our e-commerce platform. From cutting-edge electronics to fashion essentials, discover a diverse range of quality items. Simplify your shopping experience with intuitive sorting and ordering options, including category filters, price range sorting, and the latest arrivals. Find what you need easily and securely, with a user-friendly interface designed for your convenience. Elevate your online shopping journey today!',
 }
 
 interface ProductsPageProps {
-  searchParams: {
-    category?: string
-    page?: string
-  }
+  searchParams: Partial<typeof PRODUCTS_SEARCH_PARAMS>
 }
-
-const ITEMS_PER_PAGE = 1
 const storeDB = new DatabaseService()
-const totalPages = Math.ceil((await storeDB.getAllProducts()).length / ITEMS_PER_PAGE)
 
 export default async function ProductsPage({ searchParams }: ProductsPageProps) {
-  const category = searchParams.category ?? 'all'
-  const currentPage = Number(searchParams.page) || 1
+  const category = searchParams.category ?? ''
+  const currentPage = Number(searchParams.page) ?? 1
+  const totalPages = await storeDB.getTotalPages(searchParams.searchQuery ?? '', {
+    category,
+    itemsPerPage: 12,
+  })
 
   return (
     <>
-      <h1>Products Page</h1>
-      <Search />
-      <div className="mt-5 flex w-full justify-center">
+      <h1 className="text-3xl font-bold uppercase mb-4">{category ? 'All Products' : 'All Products'}</h1>
+      <div className="flex items-center gap-4 mb-8">
+        <Search />
         <Pagination totalPages={totalPages} />
       </div>
+      <ProductList query={searchParams.searchQuery ?? ''} currentPage={currentPage} category={category} />
     </>
   )
 }
