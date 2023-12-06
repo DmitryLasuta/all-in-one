@@ -13,8 +13,8 @@ export default class DatabaseService {
         COUNT(*) 
       FROM products 
       WHERE 
-        title ILIKE ${`%${query}%`} OR
-        description ILIKE ${`%${query}%`}`
+        title LIKE ${`%${query}%`} OR
+        description LIKE ${`%${query}%`}`
 
       return Math.ceil(Number(rows[0].count) / itemsPerPage)
     }
@@ -24,7 +24,7 @@ export default class DatabaseService {
       COUNT(*) 
     FROM products 
     WHERE 
-      (title ILIKE ${`%${query}%`} OR description ILIKE ${`%${query}%`}) AND 
+      (title LIKE ${`%${query}%`} OR description LIKE ${`%${query}%`}) AND 
       category = ${category}`
 
     return Math.ceil(Number(rows[0].count) / itemsPerPage)
@@ -94,8 +94,8 @@ export default class DatabaseService {
           JSON_BUILD_OBJECT('rate', rating_rate, 'count', rating_count) AS rating
         FROM products
         WHERE 
-          title ILIKE ${`%${query}%`} OR
-          description ILIKE ${`%${query}%`}
+          title LIKE ${`%${query}%`} OR
+          description LIKE ${`%${query}%`}
         ORDER BY rating_rate DESC
         LIMIT ${itemsPerPage} OFFSET ${offset}`
       )
@@ -106,7 +106,7 @@ export default class DatabaseService {
         JSON_BUILD_OBJECT('rate', rating_rate, 'count', rating_count) AS rating
       FROM products
       WHERE 
-       (title ILIKE ${`%${query}%`} OR description ILIKE ${`%${query}%`}) AND
+       (title LIKE ${`%${query}%`} OR description LIKE ${`%${query}%`}) AND
         category = ${category}
       ORDER BY rating_rate DESC
       LIMIT ${itemsPerPage} OFFSET ${offset}`

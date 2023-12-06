@@ -21,8 +21,9 @@ const ITEMS_PER_PAGE = 8
 
 export default async function ProductsPage({ searchParams }: ProductsPageProps) {
   const category = searchParams.category ?? ''
-  const currentPage = Number(searchParams.page) ?? 1
-  const totalPages = await new DatabaseService().getTotalPages(searchParams.query ?? '', {
+  const currentPage = Number(searchParams.page) || 1
+  const query = searchParams.query ?? ''
+  const totalPages = await new DatabaseService().getTotalPages(query, {
     category,
     itemsPerPage: ITEMS_PER_PAGE,
   })
@@ -36,7 +37,7 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
         <Search />
         {totalPages > 1 && <Pagination totalPages={totalPages} />}
       </div>
-      <Suspense fallback={<ProductCardSkeletonGroup count={ITEMS_PER_PAGE} />}>
+      <Suspense key={query + currentPage} fallback={<ProductCardSkeletonGroup count={ITEMS_PER_PAGE} />}>
         <ProductList
           query={searchParams.query ?? ''}
           currentPage={currentPage}
