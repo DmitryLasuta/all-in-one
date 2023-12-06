@@ -23,7 +23,7 @@ const Categories = dynamic(() => import('@/components/ui/CategoryList'), {
 })
 
 const topRatedProductsCount = 8
-const TopRatedProducts = dynamic(() => import('@/components/ui/TopRatedProducts'), {
+const TopRatedProducts = dynamic(() => import('@/components/ui/ProductList'), {
   loading: () => <ProductCardSkeletonGroup count={topRatedProductsCount} />,
 })
 
@@ -82,7 +82,7 @@ export default function HomePage() {
       </Section>
       {/* Top rated products */}
       <Section title={`Top ${topRatedProductsCount} Products`}>
-        <TopRatedProducts count={topRatedProductsCount} />
+        <TopRatedProducts orderByRating={true} count={topRatedProductsCount} />
       </Section>
       {/* Categories list section */}
       <Section title="Categories" hasBackground={true}>

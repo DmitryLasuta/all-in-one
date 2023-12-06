@@ -1,9 +1,10 @@
+import { BreadcrumbProps, Breadcrumbs, ProductList } from '@/components'
+import { PRODUCTS_SEARCH_PARAMS, routes } from '@/lib/utils'
+
 import { DatabaseService } from '@/lib/services'
 import { Metadata } from 'next'
-import { PRODUCTS_SEARCH_PARAMS } from '@/lib/utils'
 import Pagination from '@/components/Pagination'
 import { ProductCardSkeletonGroup } from '@/components/ui'
-import { ProductList } from '@/components'
 import { Search } from '@/components/Search'
 import { Suspense } from 'react'
 
@@ -28,10 +29,14 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
     itemsPerPage: ITEMS_PER_PAGE,
   })
 
+  const crumbs: BreadcrumbProps[] = [{ label: 'All Products', href: routes.products.list, active: category === 'all' }]
+  if (category && category !== 'all') {
+    crumbs.push({ label: category, href: routes.products.withParams({ category }), active: true })
+  }
   return (
     <>
-      <h1 className="text-3xl text-center md:text-left font-bold uppercase mb-4">
-        {!category || category === 'all' ? 'All Products' : category}
+      <h1>
+        <Breadcrumbs breadcrumbs={crumbs} />
       </h1>
       <div className="flex flex-col gap-4 mb-8 lg:flex-row">
         <Search />

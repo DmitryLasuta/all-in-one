@@ -5,7 +5,7 @@ export interface Product {
   title: string
   price: number
   description: string
-  category: Pick<Category, 'name'>
+  category: Category['name']
   image: string
   rating: {
     rate: number

@@ -3,8 +3,13 @@ import { PRODUCTS_SEARCH_PARAMS } from '@/lib/utils'
 
 export const routes = {
   home: '/',
-  products: (category: Category['name'] = 'all', page = 1) =>
-    `/products?${PRODUCTS_SEARCH_PARAMS.category}=${category}&${PRODUCTS_SEARCH_PARAMS.page}=${page}`,
+  products: {
+    list: '/products',
+    withParams: ({ category = 'all', page = 1 }: { category?: Category['name']; page?: number }) =>
+      `/products?${PRODUCTS_SEARCH_PARAMS.category}=${category}&${PRODUCTS_SEARCH_PARAMS.page}=${page}`,
+
+    details: (id: string | number, category: Category['name']) => `/products/${category}/${id}`,
+  },
   about: '/about',
   faq: '/faq',
   privacy: '/privacy',

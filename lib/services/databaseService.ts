@@ -37,15 +37,79 @@ export default class DatabaseService {
     return queryResult[0]
   }
 
-  public getAllProducts = async (category?: Category['name']) => {
-    if (category)
+  public getAllProducts = async ({
+    category,
+    limit,
+    orderByRating,
+    withoutProduct,
+  }: {
+    category?: Category['name']
+    limit?: number
+    orderByRating?: boolean
+    withoutProduct?: Product
+  }) => {
+    if (category && orderByRating && withoutProduct)
       return await executeSqlQuery<Product>(
         () => sql`
         SELECT 
           id, title, price, description, category, image, 
             JSON_BUILD_OBJECT('rate', rating_rate, 'count', rating_count) AS rating 
           FROM products 
-          WHERE category = ${category}`
+          WHERE category = ${category} AND id != ${withoutProduct.id}
+          ORDER BY Rating_rate DESC
+          LIMIT ${limit}`
+      )
+    else if (category && orderByRating)
+      return await executeSqlQuery<Product>(
+        () => sql`
+        SELECT 
+          id, title, price, description, category, image, 
+            JSON_BUILD_OBJECT('rate', rating_rate, 'count', rating_count) AS rating 
+          FROM products 
+          WHERE category = ${category}
+          ORDER BY Rating_rate DESC
+          LIMIT ${limit}`
+      )
+    else if (category && !orderByRating && withoutProduct)
+      return await executeSqlQuery<Product>(
+        () => sql`
+        SELECT 
+          id, title, price, description, category, image, 
+            JSON_BUILD_OBJECT('rate', rating_rate, 'count', rating_count) AS rating 
+          FROM products 
+          WHERE category = ${category} AND id != ${withoutProduct.id}
+          LIMIT ${limit}`
+      )
+    else if (category && !orderByRating)
+      return await executeSqlQuery<Product>(
+        () => sql`
+        SELECT 
+          id, title, price, description, category, image, 
+            JSON_BUILD_OBJECT('rate', rating_rate, 'count', rating_count) AS rating 
+          FROM products 
+          WHERE category = ${category}
+          LIMIT ${limit}`
+      )
+    else if (!category && orderByRating && withoutProduct)
+      return await executeSqlQuery<Product>(
+        () => sql`
+        SELECT 
+          id, title, price, description, category, image, 
+            JSON_BUILD_OBJECT('rate', rating_rate, 'count', rating_count) AS rating 
+        FROM products 
+        WHERE id != ${withoutProduct.id}
+        ORDER BY Rating_rate DESC
+        LIMIT ${limit}`
+      )
+    else if (!category && orderByRating)
+      return await executeSqlQuery<Product>(
+        () => sql`
+        SELECT 
+          id, title, price, description, category, image, 
+            JSON_BUILD_OBJECT('rate', rating_rate, 'count', rating_count) AS rating 
+        FROM products
+        ORDER BY Rating_rate DESC
+        LIMIT ${limit}`
       )
     else
       return await executeSqlQuery<Product>(
@@ -57,7 +121,7 @@ export default class DatabaseService {
       )
   }
 
-  public getProductById = async (id: number): Promise<Product> => {
+  public getProductById = async (id: number): Promise<Product | undefined> => {
     const queryResult = await executeSqlQuery<Product>(
       () => sql`
       SELECT 

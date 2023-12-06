@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 
 const navigationLinks: NavigationLinks[] = [
   { title: 'Home', href: routes.home },
-  { title: 'Products', href: routes.products() },
+  { title: 'Products', href: routes.products.withParams({ category: 'all' }) },
   { title: 'Privacy policy', href: routes.privacy },
   { title: 'About us', href: routes.about },
   { title: 'faq', href: routes.faq },

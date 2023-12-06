@@ -9,7 +9,7 @@ export default async function CategoriesList() {
     <ul className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4">
       {categories.map(category => (
         <li key={category.id}>
-          <Link href={routes.products(category.name)}>
+          <Link href={routes.products.withParams({ category: category.name })}>
             <CategoryCard category={category} />
           </Link>
         </li>

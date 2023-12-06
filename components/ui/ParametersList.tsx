@@ -39,7 +39,7 @@ export const ParametersList = ({ links, caption, parameter }: SidePanelProps) =>
         {links.map(({ href, title }) => (
           <li
             className={`hover:scale-105 hover:font-bold transition-transform ${
-              searchParams.get(parameter) === title.toLocaleLowerCase()
+              searchParams.get(parameter) === title.toLocaleLowerCase() || searchParams.get(parameter) === href
                 ? `font-bold before:content-['>'] before:pr-2`
                 : ''
             } mb-1`}

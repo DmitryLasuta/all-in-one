@@ -2,13 +2,15 @@
 
 interface ButtonProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'className'> {
   children: React.ReactNode
-  isFontBold?: boolean
+  font?: 'bold' | 'normal'
 }
 
-export const Button = ({ children, isFontBold, ...attrs }: ButtonProps) => {
+export const Button = ({ children, font = 'normal', ...attrs }: ButtonProps) => {
   return (
     <button
-      className={`text-sm bg-secondary px-4 py-2 rounded text-primary w-full ${isFontBold ? 'font-bold' : ''}`}
+      className={`focus-visible:outline focus-visible:outline-4 focus-visible:outline-accent text-sm bg-secondary px-4 py-2 rounded text-primary w-full ${
+        font === 'bold' ? 'font-bold' : ''
+      }`}
       {...attrs}
     >
       {children}
