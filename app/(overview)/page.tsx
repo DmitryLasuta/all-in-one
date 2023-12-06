@@ -56,7 +56,14 @@ export default function HomePage() {
         <section className="py-16 text-center lg:text-right w-full flex flex-col lg:flex-row items-center gap-4 lg:gap-10">
           <picture>
             <source media="(min-width: 768px)" width={900} height={700} srcSet="/banner.jpg" />
-            <Image className="bg-secondary" src="/banner-mobile.jpeg" width={500} height={600} priority alt="" />
+            <Image
+              className="bg-secondary rounded"
+              src="/banner-mobile.jpeg"
+              width={500}
+              height={600}
+              priority
+              alt=""
+            />
           </picture>
           <div className="">
             <h1 className={`${dockerOne.className} text-2xl capitalize mb-4 font-bold`}>
