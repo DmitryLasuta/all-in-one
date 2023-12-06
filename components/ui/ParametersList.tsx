@@ -35,11 +35,13 @@ export const ParametersList = ({ links, caption, parameter }: SidePanelProps) =>
           ))}
         </select>
       </div>
-      <ul className="hidden pl-4 capitalize md:block">
+      <ul className="hidden capitalize md:block">
         {links.map(({ href, title }) => (
           <li
             className={`hover:scale-105 hover:font-bold transition-transform ${
-              searchParams.get(parameter) === title.toLocaleLowerCase() ? 'font-bold scale-105' : ''
+              searchParams.get(parameter) === title.toLocaleLowerCase()
+                ? `font-bold before:content-['>'] before:pr-2`
+                : ''
             } mb-1`}
             key={title}
           >
