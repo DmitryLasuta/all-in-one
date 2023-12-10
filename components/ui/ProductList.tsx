@@ -24,7 +24,7 @@ export default async function ProductList({
   return (
     <Grid>
       {productList.map(product => (
-        <li className="sm:w-[60%] md:w-full sm:mx-auto" key={product.id}>
+        <li className="max-w-[300px] md:w-full sm:mx-auto" key={product.id}>
           <ProductCard product={product} />
         </li>
       ))}

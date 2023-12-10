@@ -1,7 +1,7 @@
-import { Category } from '@/lib/types'
+import type { Category } from '@/lib/types'
 import { DatabaseService } from '@/lib/services'
 import { Grid } from '@/components/ui/common'
-import { ProductCard } from '@/components/ui/'
+import { ProductCard } from '@/components/ui'
 
 export const ProductList = async ({
   query,
@@ -21,7 +21,7 @@ export const ProductList = async ({
         <p>No products found</p>
       ) : (
         products.map(product => (
-          <li className="sm:w-[60%] md:w-full sm:mx-auto" key={product.id}>
+          <li className="max-w-[300px] md:w-full sm:mx-auto" key={product.id}>
             <ProductCard product={product} />
           </li>
         ))
