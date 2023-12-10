@@ -1,11 +1,10 @@
-import { CategoryCardSkeletonGroup, ProductCardSkeletonGroup } from '@/components/ui'
+import { CategoryCardSkeletonGroup, ProductCardSkeletonGroup } from '@/components/cards'
+import { Container, Section } from '@/components/common'
 
-import { Container } from '@/components/ui/common'
 import { FaFlagCheckered } from 'react-icons/fa'
 import Image from 'next/image'
 import { MdHighQuality } from 'react-icons/md'
 import { RiSecurePaymentFill } from 'react-icons/ri'
-import { Section } from '@/components/ui/common'
 import { dockerOne } from '@/app/assets/fonts'
 import dynamic from 'next/dynamic'
 
@@ -18,12 +17,12 @@ const ourBrandsList = [
   { title: 'The North Face ', image: '/brandsLogo/TNF.svg' },
 ]
 
-const Categories = dynamic(() => import('@/components/ui/CategoryList'), {
+const Categories = dynamic(() => import('@/components/CategoryList'), {
   loading: () => <CategoryCardSkeletonGroup count={4} />,
 })
 
 const topRatedProductsCount = 8
-const TopRatedProducts = dynamic(() => import('@/components/ui/ProductList'), {
+const TopRatedProducts = dynamic(() => import('@/components/ProductList'), {
   loading: () => <ProductCardSkeletonGroup count={topRatedProductsCount} />,
 })
 
@@ -87,14 +86,6 @@ export default function HomePage() {
           ))}
         </ul>
       </Section>
-      {/* Top rated products */}
-      <Section title={`Top ${topRatedProductsCount} Products`}>
-        <TopRatedProducts orderByRating={true} count={topRatedProductsCount} />
-      </Section>
-      {/* Categories list section */}
-      <Section title="Categories" hasBackground={true}>
-        <Categories />
-      </Section>
       {/* Our advantages */}
       <Section title="Why Choose Our Store?">
         <ul className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-[70%] md:max-w-full mx-auto">
@@ -108,6 +99,14 @@ export default function HomePage() {
             </li>
           ))}
         </ul>
+      </Section>
+      {/* Categories list section */}
+      <Section title="Categories" hasBackground={true}>
+        <Categories />
+      </Section>
+      {/* Top rated products */}
+      <Section title={`Top ${topRatedProductsCount} Products`}>
+        <TopRatedProducts orderByRating={true} count={topRatedProductsCount} />
       </Section>
     </main>
   )

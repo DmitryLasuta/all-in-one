@@ -1,5 +1,5 @@
-import { CategoryCardSkeletonGroup, ProductCardSkeletonGroup } from '@/components/ui'
-import { Container, Section } from '@/components/ui/common'
+import { CategoryCardSkeletonGroup, ProductCardSkeletonGroup } from '@/components/cards'
+import { Container, Section } from '@/components/common'
 
 export default function HomePageLoading() {
   return (

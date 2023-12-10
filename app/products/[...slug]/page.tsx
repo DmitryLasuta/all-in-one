@@ -1,15 +1,15 @@
-import { Button, Container, Section } from '@/components/ui/common'
+import { Button, Section } from '@/components/common'
 
 import { Breadcrumbs } from '@/components'
 import { DatabaseService } from '@/lib/services'
 import Image from 'next/image'
-import { Metadata } from 'next'
-import { ProductCardSkeletonGroup } from '@/components/ui'
+import type { Metadata } from 'next'
+import { ProductCardSkeletonGroup } from '@/components/cards'
 import dynamic from 'next/dynamic'
 import { notFound } from 'next/navigation'
 import { routes } from '@/lib/utils'
 
-const RelatedProducts = dynamic(() => import('@/components/ui/ProductList'), {
+const RelatedProducts = dynamic(() => import('@/components/ProductList'), {
   loading: () => <ProductCardSkeletonGroup count={8} />,
 })
 

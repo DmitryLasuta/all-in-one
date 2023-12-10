@@ -20,9 +20,10 @@ export const ParametersList = ({ links, caption, parameter }: SidePanelProps) =>
   }
 
   return (
-    <>
+    <section>
       <div className="flex items-center justify-between gap-4">
         <h4 className="my-4 text-lg">{caption}</h4>
+        {/* Mobile */}
         <select
           className="capitalize flex-1 p-2 rounded md:hidden"
           defaultValue={searchParams.get(parameter) ?? links[0].href}
@@ -35,6 +36,7 @@ export const ParametersList = ({ links, caption, parameter }: SidePanelProps) =>
           ))}
         </select>
       </div>
+      {/* Desktop */}
       <ul className="hidden capitalize md:block">
         {links.map(({ href, title }) => (
           <li
@@ -49,6 +51,6 @@ export const ParametersList = ({ links, caption, parameter }: SidePanelProps) =>
           </li>
         ))}
       </ul>
-    </>
+    </section>
   )
 }

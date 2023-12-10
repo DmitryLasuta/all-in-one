@@ -1,4 +1,4 @@
-import { Grid } from '@/components/ui/common'
+import { Grid } from '@/components/common'
 
 export const ProductCardSkeleton = () => {
   return (
@@ -35,7 +35,7 @@ export const ProductCardSkeletonGroup = ({ count }: { count: number }) => {
   return (
     <Grid>
       {[...Array(count)].map((_, index) => (
-        <li className="mb-4" key={index}>
+        <li className="max-w-[300px] md:w-full sm:mx-auto" key={index}>
           <ProductCardSkeleton />
         </li>
       ))}

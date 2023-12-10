@@ -1,4 +1,4 @@
-import { Container } from '@/components/ui/common'
+import { Container } from '@/components/common'
 import { josefinSans } from '@/app/assets/fonts'
 
 interface SectionProps {

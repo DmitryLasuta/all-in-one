@@ -1,4 +1,4 @@
-import { CategoryCard } from '@/components/ui'
+import { CategoryCard } from '@/components/cards'
 import { DatabaseService } from '@/lib/services'
 import Link from 'next/link'
 import { routes } from '@/lib/utils'

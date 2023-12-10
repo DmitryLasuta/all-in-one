@@ -1,8 +1,8 @@
 import { PRODUCTS_SEARCH_PARAMS, routes } from '@/lib/utils'
 
 import { DatabaseService } from '@/lib/services'
-import { ParametersList } from '@/components/ui/ParametersList'
-import { SidePanel } from '@/components/ui'
+import { ParametersList } from '@/components'
+import { SidePanel } from '@/components/sidePanel'
 
 export default async function ProductsLayout({ children }: { children: React.ReactNode }) {
   const categories = await new DatabaseService().getAllCategories()

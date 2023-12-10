@@ -1,31 +1,32 @@
-import type { Category } from '@/lib/types'
-import { DatabaseService } from '@/lib/services'
-import { Grid } from '@/components/ui/common'
-import { ProductCard } from '@/components/ui'
+import type { Category, Product } from '@/lib/types'
+import { Grid, GridItem } from '@/components/common'
 
-export const ProductList = async ({
-  query,
-  currentPage,
-  itemsPerPage,
-  category,
-}: {
-  query: string
-  currentPage: number
-  itemsPerPage: number
+import { DatabaseService } from '@/lib/services'
+import { ProductCard } from '@/components/cards'
+
+interface ProductListProps {
   category?: Category['name']
-}) => {
-  const products = await new DatabaseService().searchProducts(query, currentPage, itemsPerPage, category)
+  count?: number
+  orderByRating?: boolean
+  withoutProduct?: Product
+}
+
+export default async function ProductList({ category, count, orderByRating, withoutProduct }: ProductListProps) {
+  const productList = await new DatabaseService().getAllProducts({
+    category,
+    limit: count,
+    orderByRating,
+    withoutProduct,
+  })
+
+  if (productList.length === 0) return <p>No products found</p>
   return (
     <Grid>
-      {products.length === 0 ? (
-        <p>No products found</p>
-      ) : (
-        products.map(product => (
-          <li className="max-w-[300px] md:w-full sm:mx-auto" key={product.id}>
-            <ProductCard product={product} />
-          </li>
-        ))
-      )}
+      {productList.map(product => (
+        <GridItem key={product.id}>
+          <ProductCard product={product} />
+        </GridItem>
+      ))}
     </Grid>
   )
 }
