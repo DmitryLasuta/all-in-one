@@ -2,7 +2,7 @@
 
 import { useAppDispatch, useAppSelector } from '@/lib/services/redux'
 
-import { Button } from '@/components/ui/common'
+import { Button } from '@/components/common'
 import Image from 'next/image'
 import Link from 'next/link'
 import type { Product } from '@/lib/types'

@@ -1,11 +1,10 @@
-import { BreadcrumbProps, Breadcrumbs, Catalog } from '@/components'
+import { Breadcrumbs, Catalog, Pagination, Search } from '@/components'
 import { PRODUCTS_SEARCH_PARAMS, routes } from '@/lib/utils'
 
+import type { BreadcrumbProps } from '@/components'
 import { DatabaseService } from '@/lib/services'
-import { Metadata } from 'next'
-import Pagination from '@/components/Pagination'
-import { ProductCardSkeletonGroup } from '@/components/ui'
-import { Search } from '@/components/Search'
+import type { Metadata } from 'next'
+import { ProductCardSkeletonGroup } from '@/components/cards'
 import { Suspense } from 'react'
 
 export const metadata: Metadata = {

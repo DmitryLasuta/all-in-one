@@ -1,11 +1,10 @@
 import './globals.css'
 
-import { ContactInfo, CopyrightInfo, SocialLinks } from '@/components/ui'
+import { ContactInfo, CopyrightInfo, Logo, SocialLinks } from '@/components/common'
 import { ReduxStoreProvider, WebsiteNavigation } from '@/components'
 
-import { Logo } from '@/components/ui/common'
 import type { Metadata } from 'next'
-import { NavigationLinks } from '@/lib/types'
+import type { NavigationLinks } from '@/lib/types'
 import { PiShoppingCartBold } from 'react-icons/pi'
 import { redHatDisplay } from './assets/fonts'
 import { routes } from '@/lib/utils'

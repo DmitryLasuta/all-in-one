@@ -1,4 +1,4 @@
-import { Grid } from '@/components/ui/common'
+import { Grid } from '@/components/common'
 
 export const ProductCardSkeleton = () => {
   return (

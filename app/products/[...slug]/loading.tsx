@@ -1,4 +1,4 @@
-import { ProductCardSkeletonGroup } from '@/components/ui'
+import { ProductCardSkeletonGroup } from '@/components/cards'
 
 const TextSkeleton = () => {
   return (

@@ -1,6 +1,0 @@
-export * from './Button'
-export * from './Logo'
-export * from './Grid'
-export * from './TextInput'
-export * from './Container'
-export * from './Section'

@@ -4,7 +4,7 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 
 import { FaSearch } from 'react-icons/fa'
 import { PRODUCTS_SEARCH_PARAMS } from '@/lib/utils'
-import { TextInput } from '@/components/ui/common'
+import { TextInput } from '@/components/common'
 import { useDebouncedCallback } from 'use-debounce'
 
 export const Search = () => {
