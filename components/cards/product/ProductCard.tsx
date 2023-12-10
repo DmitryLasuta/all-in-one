@@ -1,7 +1,5 @@
 'use client'
 
-import { useAppDispatch, useAppSelector } from '@/lib/services/redux'
-
 import { Button } from '@/components/common'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -9,12 +7,13 @@ import type { Product } from '@/lib/types'
 import { addToCart } from '@/lib/services/redux'
 import { dockerOne } from '@/app/assets/fonts/index'
 import { routes } from '@/lib/utils'
+import { useAppDispatch } from '@/lib/services/redux'
 
 interface ProductCardProps {
   product: Product
 }
 
-export const ProductCard = ({ product }: ProductCardProps) => {
+export function ProductCard({ product }: ProductCardProps) {
   const { image, price, rating, title, id, category } = product
   const dispatch = useAppDispatch()
   return (

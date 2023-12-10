@@ -20,7 +20,7 @@ export const generateMetadata = async ({ params }: { params: { slug: string[] } 
   const [_, id] = params.slug
   const product = await storeDB.getProductById(Number(id))
   return {
-    title: `${product?.title} - ${product?.category}`,
+    title: `${product?.title} | ${product?.category}`,
     description: product?.description,
   }
 }

@@ -7,7 +7,7 @@ import type { NavigationLinks } from '@/lib/types'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 
-export const WebsiteNavigation = ({ links }: { links: NavigationLinks[] }) => {
+export const Navigation = ({ links }: { links: NavigationLinks[] }) => {
   const [isOpen, setIsOpen] = useState(false)
   const pathname = usePathname()
 

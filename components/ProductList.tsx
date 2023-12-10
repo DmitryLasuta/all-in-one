@@ -2,7 +2,7 @@ import type { Category, Product } from '@/lib/types'
 import { Grid, GridItem } from '@/components/common'
 
 import { DatabaseService } from '@/lib/services'
-import { ProductCard } from '@/components/cards'
+import { ProductCard } from '@/components/cards/product/ProductCard'
 
 interface ProductListProps {
   category?: Category['name']
@@ -19,7 +19,7 @@ export default async function ProductList({ category, count, orderByRating, with
     withoutProduct,
   })
 
-  if (productList.length === 0) return <p>No products found</p>
+  // if (productList.length === 0) return <p>No products found</p>
   return (
     <Grid>
       {productList.map(product => (
