@@ -1,4 +1,4 @@
-export * from './categoryCart'
+export * from './categoryCard'
 export * from './productCard'
 
 export * from './SidePanel'

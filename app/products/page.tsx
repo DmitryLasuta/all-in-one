@@ -1,4 +1,4 @@
-import { BreadcrumbProps, Breadcrumbs, ProductList } from '@/components'
+import { BreadcrumbProps, Breadcrumbs, Catalog } from '@/components'
 import { PRODUCTS_SEARCH_PARAMS, routes } from '@/lib/utils'
 
 import { DatabaseService } from '@/lib/services'
@@ -43,7 +43,7 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
         {totalPages > 1 && <Pagination totalPages={totalPages} />}
       </div>
       <Suspense key={query + currentPage} fallback={<ProductCardSkeletonGroup count={ITEMS_PER_PAGE} />}>
-        <ProductList
+        <Catalog
           query={searchParams.query ?? ''}
           currentPage={currentPage}
           itemsPerPage={ITEMS_PER_PAGE}

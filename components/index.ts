@@ -1,4 +1,5 @@
 export * from './WebsiteNavigation'
 export * from './Pagination'
-export * from './ProductList'
+export * from './Catalog'
 export * from './Breadcrumbs'
+export * from './ReduxStoreProvider'

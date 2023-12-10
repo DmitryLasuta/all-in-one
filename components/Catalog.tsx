@@ -3,7 +3,7 @@ import { DatabaseService } from '@/lib/services'
 import { Grid } from '@/components/ui/common'
 import { ProductCard } from '@/components/ui/'
 
-export const ProductList = async ({
+export const Catalog = async ({
   query,
   currentPage,
   itemsPerPage,
