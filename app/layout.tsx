@@ -1,12 +1,12 @@
 import './globals.css'
 
 import { ContactInfo, CopyrightInfo, SocialLinks } from '@/components/ui'
+import { ReduxStoreProvider, WebsiteNavigation } from '@/components'
 
 import { Logo } from '@/components/ui/common'
 import type { Metadata } from 'next'
 import { NavigationLinks } from '@/lib/types'
 import { PiShoppingCartBold } from 'react-icons/pi'
-import { WebsiteNavigation } from '@/components'
 import { redHatDisplay } from './assets/fonts'
 import { routes } from '@/lib/utils'
 
@@ -50,7 +50,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </div>
         </header>
         {/* pages content */}
-        <div className="min-h-screen pt-[4.7rem]">{children}</div>
+        <div className="min-h-screen pt-[4.7rem]">
+          <ReduxStoreProvider>{children}</ReduxStoreProvider>
+        </div>
         {/* footer */}
         <footer className="bg-accent p-4 text-secondary xl:bg-fluid bg-no-repeat bg-fixed border-t-2">
           <div className="container">

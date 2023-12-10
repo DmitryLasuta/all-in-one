@@ -87,14 +87,6 @@ export default function HomePage() {
           ))}
         </ul>
       </Section>
-      {/* Top rated products */}
-      <Section title={`Top ${topRatedProductsCount} Products`}>
-        <TopRatedProducts orderByRating={true} count={topRatedProductsCount} />
-      </Section>
-      {/* Categories list section */}
-      <Section title="Categories" hasBackground={true}>
-        <Categories />
-      </Section>
       {/* Our advantages */}
       <Section title="Why Choose Our Store?">
         <ul className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-[70%] md:max-w-full mx-auto">
@@ -108,6 +100,14 @@ export default function HomePage() {
             </li>
           ))}
         </ul>
+      </Section>
+      {/* Categories list section */}
+      <Section title="Categories" hasBackground={true}>
+        <Categories />
+      </Section>
+      {/* Top rated products */}
+      <Section title={`Top ${topRatedProductsCount} Products`}>
+        <TopRatedProducts orderByRating={true} count={topRatedProductsCount} />
       </Section>
     </main>
   )
