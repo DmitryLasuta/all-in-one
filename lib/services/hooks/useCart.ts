@@ -17,28 +17,26 @@ import useSWR from 'swr'
 export const useCart = () => {
   const { items, total } = useAppSelector(state => state.cart)
   const dispatch = useAppDispatch()
-  const { data, isLoading, mutate } = useSWR<Product[]>(
-    'api/products',
-    async () => {
-      const response = await fetch('/api/products', {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        method: 'POST',
-        body: JSON.stringify({ ids: Object.keys(items) }),
-        next: { revalidate: 50 },
-        cache: 'no-store',
-      })
-      return await response.json()
-    },
-    {
-      errorRetryCount: 3,
-    }
-  )
 
-  useEffect(() => {
-    mutate()
-  }, [items, mutate])
+  const { data, isLoading, mutate } = useSWR<Product[]>(
+    { url: 'api/products', ids: Object.keys(items) },
+    async (params: { url: string; ids: string[] }) => {
+      const { ids, url } = params
+
+      const response = Promise.all<Product>(
+        ids.map(async id => {
+          const res = await fetch(`${url}/${id}`, {
+            cache: 'force-cache',
+            next: { revalidate: 60, tags: ['products'] },
+            method: 'GET',
+          })
+          return await res.json()
+        })
+      )
+      return response
+    },
+    {}
+  )
 
   const handleAddToCart = useCallback(
     (product: Product) => {
@@ -50,13 +48,15 @@ export const useCart = () => {
   const handleRemoveFromCart = useCallback(
     (product: Product) => {
       dispatch(removeFromCart(product))
+      mutate()
     },
-    [dispatch]
+    [dispatch, mutate]
   )
 
   const handleClearCart = useCallback(() => {
     dispatch(clearCart())
-  }, [dispatch])
+    mutate()
+  }, [dispatch, mutate])
 
   const handleIncreaseQuantity = useCallback(
     (product: Product) => {

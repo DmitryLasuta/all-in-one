@@ -36,7 +36,7 @@ export default function CartPage() {
         </section>
         {/* cards */}
         <div className="px-2 lg:px-4">
-          {total.amount === 0 && (
+          {total.amount === 0 && products?.length === 0 && (
             <p className="flex items-center gap-2">
               <IoSadOutline />
               Your cart is empty
@@ -48,6 +48,7 @@ export default function CartPage() {
           ) : (
             <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 justify-items-center  ">
               {products?.map(product => {
+                console.log(product.id)
                 return <CartItem key={product.id} product={product} />
               })}
             </div>

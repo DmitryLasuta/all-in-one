@@ -21,18 +21,20 @@ export function CartItem({ product }: { product: Product }) {
         width={250}
         height={250}
       />
-      <div className="grid grid-rows-[2fr_auto]">
-        <figcaption className="px-4 py-4 md:px-2">
+      <div className="grid grid-rows-[2fr_auto] flex-1">
+        <figcaption className="px-4 py-4 md:px-2 w-full">
           <h5 className="text-lg font-bold mb-4">{title}</h5>
           <p className="text-sm capitalize mb-2">Category: {category}</p>
-          <p className="text-sm mr-2">
+          <p className="text-sm flex items-center gap-2">
             Price:
-            <span className="font-bold">{price.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</span>
+            <span className="font-bold before:content-['$'] before:pr-1">
+              {price.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
+            </span>
           </p>
         </figcaption>
-        <fieldset>
+        <fieldset className="rounded border-2 p-2">
           <legend className="sr-only">Quantity</legend>
-          <div className="flex flex-col items-center gap-2 mb-4">
+          <div className="flex flex-col items-center gap-2 mb-4 lg:flex-row xl:flex-col 2xl:flex-row">
             <label className="" htmlFor={id.toString()}>
               In cart:
             </label>
