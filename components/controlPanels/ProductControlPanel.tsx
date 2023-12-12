@@ -1,6 +1,6 @@
 'use client'
 
-import { Button } from './common'
+import { Button } from '@/components/common'
 import type { Product } from '@/lib/types'
 import { useCart } from '@/lib/services/hooks'
 

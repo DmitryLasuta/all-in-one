@@ -26,8 +26,8 @@ export const useCart = () => {
       const response = Promise.all<Product>(
         ids.map(async id => {
           const res = await fetch(`${url}/${id}`, {
-            cache: 'force-cache',
-            next: { revalidate: 60, tags: ['products'] },
+            cache: 'no-store',
+            next: { tags: ['products'] },
             method: 'GET',
           })
           return await res.json()

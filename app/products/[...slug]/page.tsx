@@ -1,9 +1,9 @@
-import { Breadcrumbs, ProductControlPanel } from '@/components'
-import { Button, Section } from '@/components/common'
-
+import { Breadcrumbs } from '@/components'
 import Image from 'next/image'
 import type { Metadata } from 'next'
 import { ProductCardSkeletonGroup } from '@/components/cards'
+import { ProductControlPanel } from '@/components/controlPanels'
+import { Section } from '@/components/common'
 import dynamic from 'next/dynamic'
 import { getProductById } from '@/lib/services/dataBase'
 import { notFound } from 'next/navigation'
