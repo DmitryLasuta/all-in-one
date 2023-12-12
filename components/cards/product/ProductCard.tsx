@@ -7,7 +7,7 @@ import type { Product } from '@/lib/types'
 import { addToCart } from '@/lib/services/redux'
 import { dockerOne } from '@/app/assets/fonts/index'
 import { routes } from '@/lib/utils'
-import { useAppDispatch } from '@/lib/services/redux'
+import { useCart } from '@/lib/services'
 
 interface ProductCardProps {
   product: Product
@@ -15,7 +15,7 @@ interface ProductCardProps {
 
 export function ProductCard({ product }: ProductCardProps) {
   const { image, price, rating, title, id, category } = product
-  const dispatch = useAppDispatch()
+  const { handleAddToCart } = useCart()
   return (
     <figure className="bg-primary p-4 rounded w-full h-full border-2 flex flex-col gap-4">
       <Image
@@ -25,7 +25,7 @@ export function ProductCard({ product }: ProductCardProps) {
         width={250}
         height={250}
       />
-      <Button onClick={() => dispatch(addToCart(product))} font="bold">
+      <Button onClick={() => handleAddToCart(product)} font="bold">
         Add to cart
       </Button>
 

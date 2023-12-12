@@ -24,14 +24,14 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${redHatDisplay.className}`}>
-        <Header />
-        {/* pages content */}
-        <div className="min-h-screen pt-[4.7rem]">
-          <ReduxStoreProvider>{children}</ReduxStoreProvider>
-        </div>
-        <Footer />
-      </body>
+      <ReduxStoreProvider>
+        <body className={`${redHatDisplay.className}`}>
+          <Header />
+          {/* pages content */}
+          <div className="min-h-screen pt-[4.7rem]">{children}</div>
+          <Footer />
+        </body>
+      </ReduxStoreProvider>
     </html>
   )
 }

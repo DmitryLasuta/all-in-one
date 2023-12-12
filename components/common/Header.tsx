@@ -1,7 +1,7 @@
+import { CartButton } from '@/components/common'
 import { Logo } from '@/components/common'
 import { Navigation } from '@/components'
 import type { NavigationLinks } from '@/lib/types'
-import { PiShoppingCartBold } from 'react-icons/pi'
 import { routes } from '@/lib/utils'
 
 const navigationLinks: NavigationLinks[] = [
@@ -9,7 +9,6 @@ const navigationLinks: NavigationLinks[] = [
   { title: 'Products', href: routes.products.withParams({ category: 'all' }) },
   { title: 'Privacy policy', href: routes.privacy },
   { title: 'About us', href: routes.about },
-  { title: 'faq', href: routes.faq },
 ]
 
 export const Header = () => {
@@ -18,11 +17,7 @@ export const Header = () => {
       <div className="flex items-center justify-between lg:justify-start lg:lg:gap-8">
         <Navigation links={navigationLinks} />
         <Logo />
-        <div className="">
-          <button className="block text-2xl p-2 lg:border-l-2 lg:pl-4 lg:text-3xl" type="button">
-            <PiShoppingCartBold />
-          </button>
-        </div>
+        <CartButton />
       </div>
     </header>
   )

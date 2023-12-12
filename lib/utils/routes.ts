@@ -11,6 +11,6 @@ export const routes = {
     details: (id: string | number, category: Category['name']) => `/products/${category}/${id}`,
   },
   about: '/about',
-  faq: '/faq',
+  cart: '/cart',
   privacy: '/privacy',
 }

@@ -4,6 +4,7 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 
 import Link from 'next/link'
 import type { NavigationLinks } from '@/lib/types'
+import { useEffect } from 'react'
 
 interface SidePanelProps {
   parameter: string
