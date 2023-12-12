@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { PiShoppingCartBold } from 'react-icons/pi'
 import { routes } from '@/lib/utils'
-import { useCart } from '@/lib/services'
+import { useCart } from '@/lib/services/hooks'
 
 export const CartButton = () => {
   const {

@@ -19,7 +19,6 @@ export default async function ProductList({ category, count, orderByRating, with
     withoutProduct,
   })
 
-  // if (productList.length === 0) return <p>No products found</p>
   return (
     <Grid>
       {productList.map(product => (
