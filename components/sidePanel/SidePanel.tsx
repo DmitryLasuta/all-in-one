@@ -1,4 +1,4 @@
-import { ParametersList } from '.'
+import { ParametersList } from '@/components/sidePanel'
 import { ReactElement } from 'react'
 
 type SidePanelItem = ReactElement<typeof ParametersList>

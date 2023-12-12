@@ -5,7 +5,7 @@ import { FaMinus, FaPlus } from 'react-icons/fa6'
 import { Button } from '@/components/common'
 import Image from 'next/image'
 import type { Product } from '@/lib/types'
-import { useCart } from '@/lib/services'
+import { useCart } from '@/lib/services/hooks'
 
 export function CartItem({ product }: { product: Product }) {
   const { id, category, image, title, price } = product

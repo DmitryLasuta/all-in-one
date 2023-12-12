@@ -6,6 +6,7 @@ import { FaSearch } from 'react-icons/fa'
 import { PRODUCTS_SEARCH_PARAMS } from '@/lib/utils'
 import { TextInput } from '@/components/common'
 import { useDebouncedCallback } from 'use-debounce'
+import { useEffect } from 'react'
 
 export const Search = () => {
   const pathname = usePathname()

@@ -4,10 +4,9 @@ import { Button } from '@/components/common'
 import Image from 'next/image'
 import Link from 'next/link'
 import type { Product } from '@/lib/types'
-import { addToCart } from '@/lib/services/redux'
 import { dockerOne } from '@/app/assets/fonts/index'
 import { routes } from '@/lib/utils'
-import { useCart } from '@/lib/services'
+import { useCart } from '@/lib/services/hooks'
 
 interface ProductCardProps {
   product: Product

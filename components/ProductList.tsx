@@ -1,7 +1,7 @@
 import type { Category, Product } from '@/lib/types'
 import { Grid, GridItem } from '@/components/common'
 
-import { DatabaseService } from '@/lib/services'
+import { getAllProducts } from '@/lib/services/dataBase'
 import { ProductCard } from '@/components/cards/product/ProductCard'
 
 interface ProductListProps {
@@ -12,7 +12,7 @@ interface ProductListProps {
 }
 
 export default async function ProductList({ category, count, orderByRating, withoutProduct }: ProductListProps) {
-  const productList = await new DatabaseService().getAllProducts({
+  const productList = await getAllProducts({
     category,
     limit: count,
     orderByRating,

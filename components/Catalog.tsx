@@ -1,7 +1,7 @@
 import { Grid, GridItem } from '@/components/common'
 
 import type { Category } from '@/lib/types'
-import { DatabaseService } from '@/lib/services'
+import { searchProducts } from '@/lib/services/dataBase'
 import { ProductCard } from '@/components/cards'
 
 interface CatalogProps {
@@ -11,7 +11,7 @@ interface CatalogProps {
   category?: Category['name']
 }
 export const Catalog = async ({ query, currentPage, itemsPerPage, category }: CatalogProps) => {
-  const products = await new DatabaseService().searchProducts(query, currentPage, itemsPerPage, category)
+  const products = await searchProducts(query, currentPage, itemsPerPage, category)
   if (products.length === 0) return <p>No products found</p>
   return (
     <Grid>

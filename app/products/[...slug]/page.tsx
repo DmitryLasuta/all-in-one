@@ -1,7 +1,7 @@
 import { Button, Section } from '@/components/common'
 
 import { Breadcrumbs } from '@/components'
-import { DatabaseService } from '@/lib/services'
+import { getProductById } from '@/lib/services/dataBase'
 import Image from 'next/image'
 import type { Metadata } from 'next'
 import { ProductCardSkeletonGroup } from '@/components/cards'
@@ -15,10 +15,9 @@ const RelatedProducts = dynamic(() => import('@/components/ProductList'), {
 
 export const revalidate = 60
 
-const storeDB = new DatabaseService()
 export const generateMetadata = async ({ params }: { params: { slug: string[] } }): Promise<Metadata> => {
   const [_, id] = params.slug
-  const product = await storeDB.getProductById(Number(id))
+  const product = await getProductById(Number(id))
   return {
     title: `${product?.title} | ${product?.category}`,
     description: product?.description,
@@ -28,7 +27,7 @@ export const generateMetadata = async ({ params }: { params: { slug: string[] } 
 export default async function ProductPage({ params }: { params: { slug: string[] } }) {
   const [category, id] = params.slug
 
-  const product = await storeDB.getProductById(Number(id))
+  const product = await getProductById(Number(id))
   if (!product) return notFound()
 
   const { category: productCategory, description, image, price, rating, title } = product

@@ -2,7 +2,7 @@ import { Breadcrumbs, Catalog, Pagination, Search } from '@/components'
 import { PRODUCTS_SEARCH_PARAMS, routes } from '@/lib/utils'
 
 import type { BreadcrumbProps } from '@/components'
-import { DatabaseService } from '@/lib/services'
+import { getTotalPages } from '@/lib/services/dataBase'
 import type { Metadata } from 'next'
 import { ProductCardSkeletonGroup } from '@/components/cards'
 import { Suspense } from 'react'
@@ -23,7 +23,7 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
   const category = searchParams.category ?? ''
   const currentPage = Number(searchParams.page) || 1
   const query = searchParams.query ?? ''
-  const totalPages = await new DatabaseService().getTotalPages(query, {
+  const totalPages = await getTotalPages(query, {
     category,
     itemsPerPage: ITEMS_PER_PAGE,
   })
