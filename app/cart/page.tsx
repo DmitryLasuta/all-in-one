@@ -1,10 +1,10 @@
 'use client'
 
-import { checkout, useCart } from '@/lib/services'
-
 import { Button } from '@/components/common'
 import { CartItem } from '@/components/cards'
 import { IoSadOutline } from 'react-icons/io5'
+import { checkout } from '@/lib/services/actions'
+import { useCart } from '@/lib/services/hooks'
 
 export default function CartPage() {
   const { total, isLoading, products, handleClearCart } = useCart()
