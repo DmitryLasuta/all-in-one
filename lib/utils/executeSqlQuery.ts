@@ -12,7 +12,6 @@ export const executeSqlQuery: ExecuteSqlQuery = async queryCallback => {
     const { rows } = await queryCallback()
     return rows
   } catch (error) {
-    console.log(error)
     return []
   }
 }

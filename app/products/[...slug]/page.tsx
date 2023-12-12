@@ -1,11 +1,11 @@
+import { Breadcrumbs, ProductControlPanel } from '@/components'
 import { Button, Section } from '@/components/common'
 
-import { Breadcrumbs } from '@/components'
-import { getProductById } from '@/lib/services/dataBase'
 import Image from 'next/image'
 import type { Metadata } from 'next'
 import { ProductCardSkeletonGroup } from '@/components/cards'
 import dynamic from 'next/dynamic'
+import { getProductById } from '@/lib/services/dataBase'
 import { notFound } from 'next/navigation'
 import { routes } from '@/lib/utils'
 
@@ -17,7 +17,7 @@ export const revalidate = 60
 
 export const generateMetadata = async ({ params }: { params: { slug: string[] } }): Promise<Metadata> => {
   const [_, id] = params.slug
-  const product = await getProductById(Number(id))
+  const product = await getProductById(id)
   return {
     title: `${product?.title} | ${product?.category}`,
     description: product?.description,
@@ -27,7 +27,7 @@ export const generateMetadata = async ({ params }: { params: { slug: string[] } 
 export default async function ProductPage({ params }: { params: { slug: string[] } }) {
   const [category, id] = params.slug
 
-  const product = await getProductById(Number(id))
+  const product = await getProductById(id)
   if (!product) return notFound()
 
   const { category: productCategory, description, image, price, rating, title } = product
@@ -44,6 +44,7 @@ export default async function ProductPage({ params }: { params: { slug: string[]
           },
         ]}
       />
+
       <figure>
         <div className="mb-8 text-center flex flex-col items-center lg:flex-row md:items-start gap-4 xl:gap-8">
           <Image
@@ -53,14 +54,7 @@ export default async function ProductPage({ params }: { params: { slug: string[]
             width={700}
             height={450}
           />
-          <div className="text-left border-2 flex-1 w-full rounded h-fit px-2 py-4">
-            <p className="mb-2">
-              Rating: <span className="font-bold">{rating.rate}</span>
-            </p>
-            <p className="mb-2">Price: {price}$</p>
-            <p className="mb-2">In stock: {rating.count}</p>
-            <Button font="bold">Add to cart</Button>
-          </div>
+          <ProductControlPanel product={product} />
         </div>
         <figcaption className="border-y-2 py-8">
           <div className="lg:max-w-[90%] lg:mx-auto">

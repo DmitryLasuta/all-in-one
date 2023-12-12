@@ -2,8 +2,8 @@ import type { Product } from '@/lib/types'
 import { executeSqlQuery } from '@/lib/utils'
 import { sql } from '@vercel/postgres'
 
-export const getProductById = async (id: number): Promise<Product | undefined> => {
-  const queryResult = await executeSqlQuery<Product>(
+export const getProductById = async (id: number | string): Promise<Product | undefined> => {
+  const queryResult: Product[] | undefined = await executeSqlQuery<Product>(
     () => sql`
     SELECT 
       id, title, price, description, category, image, 
