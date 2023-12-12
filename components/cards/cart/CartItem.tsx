@@ -5,12 +5,16 @@ import { FaMinus, FaPlus } from 'react-icons/fa6'
 import { Button } from '@/components/common'
 import Image from 'next/image'
 import type { Product } from '@/lib/types'
+import dynamic from 'next/dynamic'
 import { useCart } from '@/lib/services/hooks'
+import { useState } from 'react'
+
+const ConfirmModal = dynamic(() => import('@/components/common/Modal').then(mod => mod.Modal), { ssr: false })
 
 export function CartItem({ product }: { product: Product }) {
-  const { id, category, image, title, price } = product
-
   const { handleIncreaseQuantity, handleDecreaseQuantity, handleRemoveFromCart, items } = useCart()
+  const { id, category, image, title, price } = product
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   return (
     <figure className="flex flex-col md:flex-row gap-4 border-2 rounded max-w-[350px] w-full md:max-w-full p-2 lg:p-4">
@@ -55,7 +59,14 @@ export function CartItem({ product }: { product: Product }) {
               </Button>
             </div>
           </div>
-          <Button onClick={() => handleRemoveFromCart(product)}>Delete</Button>
+          <ConfirmModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+            <h4 className="text-center text-2xl mb-4">Are you sure you want to delete this item?</h4>
+            <div className="flex justify-center gap-4 items-center">
+              <Button onClick={() => setIsModalOpen(false)}>Cancel</Button>
+              <Button onClick={() => handleRemoveFromCart(product)}>Delete</Button>
+            </div>
+          </ConfirmModal>
+          <Button onClick={() => setIsModalOpen(true)}>Delete</Button>
         </fieldset>
       </div>
     </figure>

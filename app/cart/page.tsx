@@ -3,6 +3,7 @@
 import { CartItem, CartItemsSkeletonGroup } from '@/components/cards'
 
 import { IoSadOutline } from 'react-icons/io5'
+import { Modal } from '@/components/common'
 import { useCart } from '@/lib/services/hooks'
 
 export default function CartPage() {
