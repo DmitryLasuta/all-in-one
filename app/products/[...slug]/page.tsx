@@ -21,6 +21,15 @@ export const generateMetadata = async ({ params }: { params: { slug: string[] } 
   return {
     title: `${product?.title} | ${product?.category}`,
     description: product?.description,
+    openGraph: {
+      title: `${product?.title} | ${product?.category}`,
+      description: product?.description,
+      type: 'website',
+      locale: 'en-US',
+      images: product?.image,
+      siteName: 'All in one',
+      url: `${process.env.VERCEL_URL}${routes.products.details(id, product?.category || 'all')}`,
+    },
   }
 }
 

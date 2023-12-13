@@ -20,6 +20,16 @@ export const metadata: Metadata = {
     shortcut: '/favicon-16x16.png',
     apple: '/apple-touch-icon.png',
   },
+  metadataBase: process.env.VERCEL_URL ? new URL(process.env.VERCEL_URL) : null,
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    title: 'There are no secrets to success - All in one',
+    description: 'All in one is your one-stop shop for all your needs!',
+    images: '/banner-mobile.jpeg',
+    siteName: 'All in one',
+    url: `${process.env.VERCEL_URL}/`,
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
