@@ -26,6 +26,5 @@ export async function checkout(prevState: CheckoutActionState, formData: FormDat
     }
   }
 
-  console.log(validatedFields.data)
   throw new Error('Not implemented')
 }
