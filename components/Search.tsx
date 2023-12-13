@@ -2,11 +2,9 @@
 
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 
-import { FaSearch } from 'react-icons/fa'
 import { PRODUCTS_SEARCH_PARAMS } from '@/lib/utils'
 import { TextInput } from '@/components/common'
 import { useDebouncedCallback } from 'use-debounce'
-import { useEffect } from 'react'
 
 export const Search = () => {
   const pathname = usePathname()
@@ -30,9 +28,7 @@ export const Search = () => {
       </label>
       <TextInput
         role="search"
-        id="search"
         placeholder={`Search for products...`}
-        icon={<FaSearch />}
         onChange={({ target }) => handleSearch(target.value)}
         defaultValue={searchParams.get('query')?.toString()}
       />
