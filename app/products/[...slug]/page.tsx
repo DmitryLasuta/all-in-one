@@ -21,6 +21,9 @@ export const generateMetadata = async ({ params }: { params: { slug: string[] } 
   return {
     title: `${product?.title} | ${product?.category}`,
     description: product?.description,
+    metadataBase: process.env.NEXT_PUBLIC_VERCEL_URL
+      ? new URL(process.env.NEXT_PUBLIC_VERCEL_URL)
+      : new URL('http://localhost:3000'),
     openGraph: {
       title: `${product?.title} | ${product?.category}`,
       description: product?.description,
@@ -28,7 +31,7 @@ export const generateMetadata = async ({ params }: { params: { slug: string[] } 
       locale: 'en-US',
       images: product?.image,
       siteName: 'All in one',
-      url: `${process.env.VERCEL_URL}${routes.products.details(id, product?.category || 'all')}`,
+      url: `${process.env.NEXT_PUBLIC_VERCEL_URL}${routes.products.details(id, product?.category || 'all')}`,
     },
   }
 }

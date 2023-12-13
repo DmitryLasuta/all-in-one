@@ -22,7 +22,9 @@ export const metadata: Metadata = {
     shortcut: '/favicon-16x16.png',
     apple: '/apple-touch-icon.png',
   },
-  metadataBase: process.env.VERCEL_URL ? new URL(process.env.VERCEL_URL) : null,
+  metadataBase: process.env.NEXT_PUBLIC_VERCEL_URL
+    ? new URL(process.env.NEXT_PUBLIC_VERCEL_URL)
+    : new URL('http://localhost:3000'),
   openGraph: {
     type: 'website',
     locale: 'en_US',
