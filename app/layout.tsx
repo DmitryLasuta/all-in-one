@@ -7,6 +7,7 @@ import { ReduxStoreProvider } from '@/components'
 import { redHatDisplay } from './assets/fonts'
 
 export const metadata: Metadata = {
+  manifest: './manifest.json',
   title: 'All in one',
   description:
     'All in one is your one-stop shop for all your needs! We offer a wide selection of products across a variety of categories, including clothing, electronics, shoes, home goods, and more. We provide high-quality products at affordable prices and fast shipping. Visit our app in one website today and start shopping!',
