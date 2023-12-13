@@ -11,15 +11,10 @@ export interface Cart {
 }
 
 const initialState: Cart = {
-  items: {
-    1: 2,
-    2: 2,
-    3: 2,
-    10: 10,
-  },
+  items: {},
   total: {
-    amount: 16,
-    price: 1466.48,
+    amount: 0,
+    price: 0,
   },
 }
 
