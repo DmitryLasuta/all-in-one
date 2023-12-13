@@ -1,23 +1,23 @@
 'use client'
 
-interface TextInputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'className' | 'type'> {
+import { useId } from 'react'
+
+interface TextInputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'className' | 'type' | 'id'> {
   type?: 'text' | 'email' | 'password' | 'tel' | 'search'
-  icon?: JSX.Element
+  label?: string
 }
 
-export const TextInput = ({ icon, type = 'text', ...attr }: TextInputProps) => {
+export const TextInput = ({ type = 'text', label, ...attr }: TextInputProps) => {
+  const id = useId()
   return (
-    <div className="relative w-full">
-      {icon && (
-        <div className="absolute inset-y-0 left-0 flex items-center pl-3 text-[#616161] pointer-events-none">
-          {icon}
-        </div>
+    <>
+      {label && (
+        <label htmlFor={id} className="text-sm capitalize inline-flex gap-1 items-center">
+          {label}
+          {attr.required && <span className="text-[#ff0000]">*</span>}
+        </label>
       )}
-      <input
-        type={type}
-        className={`text-base w-full p-2 focus:outline-2 rounded ${icon ? 'pl-10' : 'pl-2'}`}
-        {...attr}
-      />
-    </div>
+      <input type={type} id={id} className={`text-base w-full p-2 focus:outline-2 rounded`} {...attr} />
+    </>
   )
 }

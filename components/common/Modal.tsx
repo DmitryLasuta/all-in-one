@@ -34,16 +34,13 @@ export const Modal = ({ isOpen, onClose, children }: ModalProps) => {
 
   return isOpen
     ? createPortal(
-        <dialog
-          open
-          className="w-screen h-screen fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#27272779] z-[1000]"
-        >
-          <div className="flex items-center justify-center max-w-[90%] md:max-w-[75%] mx-auto h-full">
-            <div className="bg-primary p-4 relative rounded flex gap-2">
-              <div className="border-2 rounded p-4">{children}</div>
-              <button className="rounded text-gray-500 hover:text-gray-700 self-start" onClick={onClose}>
+        <dialog open className="w-screen h-screen fixed top-0 left-0 bg-[#27272779] z-[1000]">
+          <div className="flex items-center justify-center max-w-[90%] md:max-w-[75%] mx-auto h-full" onClick={onClose}>
+            <div className="bg-primary p-2 rounded relative pt-8" onClick={event => event.stopPropagation()}>
+              <button className="absolute top-2 right-2 rounded" onClick={onClose}>
                 <RiCloseLine size={24} />
               </button>
+              <div className="border-2 rounded p-2 overflow-y-auto max-h-[90vh]">{children}</div>
             </div>
           </div>
         </dialog>,
