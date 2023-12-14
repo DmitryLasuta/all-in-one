@@ -5,7 +5,6 @@ import { Footer, Header } from '@/components/common'
 import { Analytics } from '@vercel/analytics/react'
 import type { Metadata } from 'next'
 import { ReduxStoreProvider } from '@/components'
-import { SpeedInsights } from '@vercel/speed-insights/next'
 import { redHatDisplay } from './assets/fonts'
 
 export const metadata: Metadata = {
@@ -45,10 +44,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {/* pages content */}
           <div className="min-h-screen pt-[4.7rem]">{children}</div>
           <Footer />
+
           {/* analytics */}
           <Analytics />
-          <SpeedInsights />
-          {/* end analytics */}
         </body>
       </ReduxStoreProvider>
     </html>

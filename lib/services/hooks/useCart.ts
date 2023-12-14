@@ -20,8 +20,10 @@ export const useCart = () => {
 
   const { data, isLoading, mutate } = useSWR<Product[]>(
     { url: 'api/products', ids: Object.keys(items) },
-    async (params: { url: string; ids: string[] }) => {
+    async (params: { url: string; ids?: string[] }) => {
       const { ids, url } = params
+
+      if (!ids || ids.length === 0) return []
 
       const response = Promise.all<Product>(
         ids.map(async id => {

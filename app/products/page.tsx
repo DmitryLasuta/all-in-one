@@ -2,10 +2,10 @@ import { Breadcrumbs, Catalog, Pagination, Search } from '@/components'
 import { PRODUCTS_SEARCH_PARAMS, routes } from '@/lib/utils'
 
 import type { BreadcrumbProps } from '@/components'
-import { getTotalPages } from '@/lib/services/dataBase'
 import type { Metadata } from 'next'
 import { ProductCardSkeletonGroup } from '@/components/cards'
 import { Suspense } from 'react'
+import { getTotalPages } from '@/lib/services/dataBase'
 
 export const metadata: Metadata = {
   title: 'Products | All in One',
@@ -37,7 +37,7 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
       <h1>
         <Breadcrumbs breadcrumbs={crumbs} />
       </h1>
-      <div className="flex flex-col gap-4 mb-8 lg:flex-row">
+      <div className="flex flex-col  gap-4 mb-8 lg:flex-row">
         <Search />
         {totalPages > 1 && <Pagination totalPages={totalPages} />}
       </div>

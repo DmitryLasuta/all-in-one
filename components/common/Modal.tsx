@@ -22,7 +22,7 @@ export const Modal = ({ isOpen, onClose, children }: ModalProps) => {
     if (isOpen) {
       document.addEventListener('keydown', handleKeydown)
       document.body.style.overflow = 'hidden'
-      document.body.style.paddingRight = '12px'
+      document.body.style.paddingRight = `${window.innerWidth - document.body.offsetWidth}px`
     }
 
     return () => {

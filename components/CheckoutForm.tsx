@@ -42,7 +42,7 @@ export const CheckoutForm = () => {
           <TextInput
             type="tel"
             name="phone"
-            placeholder="1234567890"
+            placeholder="123456789"
             label="Mobile phone number"
             aria-describedby="phone-error"
             required

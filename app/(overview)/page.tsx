@@ -88,7 +88,7 @@ export default function HomePage() {
       </Section>
       {/* Our advantages */}
       <Section title="Why Choose Our Store?">
-        <ul className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-[70%] md:max-w-full mx-auto">
+        <ul className="grid grid-cols-1 md:grid-cols-3 gap-4 mx-auto">
           {ourAdvantagesList.map(({ title, description, icon }) => (
             <li className="text-center border-2 rounded p-4" key={title}>
               <article>
