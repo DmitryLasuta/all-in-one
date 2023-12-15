@@ -6,6 +6,7 @@ import type { Metadata } from 'next'
 import { ProductCardSkeletonGroup } from '@/components/cards'
 import { Suspense } from 'react'
 import { getTotalPages } from '@/lib/services/dataBase'
+import type { OrderBy } from '@/lib/types'
 
 export const metadata: Metadata = {
   title: 'Products | All in One',
@@ -23,6 +24,8 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
   const category = searchParams.category ?? ''
   const currentPage = Number(searchParams.page) || 1
   const query = searchParams.query ?? ''
+  const orderBy: OrderBy = (searchParams.orderBy as OrderBy) || 'price'
+
   const totalPages = await getTotalPages(query, {
     category,
     itemsPerPage: ITEMS_PER_PAGE,
@@ -47,6 +50,7 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
           currentPage={currentPage}
           itemsPerPage={ITEMS_PER_PAGE}
           category={category}
+          orderby={orderBy}
         />
       </Suspense>
     </>
