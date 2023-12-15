@@ -21,5 +21,4 @@ export const routes = {
   },
   about: '/about',
   cart: '/cart',
-  privacy: '/privacy',
 }
