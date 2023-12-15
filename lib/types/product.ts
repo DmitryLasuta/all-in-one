@@ -7,8 +7,6 @@ export interface Product {
   description: string
   category: Category['name']
   image: string
-  rating: {
-    rate: number
-    count: number
-  }
+  rating_rate: number
+  rating_count: number
 }

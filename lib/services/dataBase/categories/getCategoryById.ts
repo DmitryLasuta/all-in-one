@@ -1,8 +1,5 @@
 import type { Category } from '@/lib/types'
-import { executeSqlQuery } from '@/lib/utils'
-import { sql } from '@vercel/postgres'
+import { database } from '@/lib/services/dataBase/schema'
 
-export const getCategoryById = async (id: number) => {
-  const queryResult = await executeSqlQuery<Category>(() => sql`SELECT * FROM categories WHERE id = ${id}`)
-  return queryResult[0]
-}
+export const getCategoryById = async (id: number): Promise<Category | undefined> =>
+  await database.selectFrom('categories').selectAll().where('id', '=', id).executeTakeFirst()

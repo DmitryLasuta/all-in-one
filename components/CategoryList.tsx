@@ -1,6 +1,6 @@
 import { CategoryCard } from '@/components/cards'
-import { getAllCategories } from '@/lib/services/dataBase'
 import Link from 'next/link'
+import { getAllCategories } from '@/lib/services/dataBase'
 import { routes } from '@/lib/utils'
 
 export default async function CategoriesList() {

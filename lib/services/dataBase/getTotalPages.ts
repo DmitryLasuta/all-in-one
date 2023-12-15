@@ -1,28 +1,23 @@
 import type { Category } from '@/lib/types'
-import { sql } from '@vercel/postgres'
+import { database } from '@/lib/services/dataBase/schema'
 
-export const getTotalPages = async (query: string, options: { itemsPerPage: number; category?: Category['name'] }) => {
-  const { itemsPerPage, category } = options
+type CalculateTotalPagesFunction = (
+  query: string,
+  options: { itemsPerPage: number; category?: Category['name'] }
+) => Promise<number>
 
-  if (!category || category === 'all') {
-    const { rows }: { rows: { count: number }[] } = await sql`
-    SELECT 
-      COUNT(*) 
-    FROM products 
-    WHERE 
-      title LIKE ${`%${query}%`} OR
-      description LIKE ${`%${query}%`}`
+export const getTotalPages: CalculateTotalPagesFunction = async (query, { itemsPerPage, category = 'all' }) => {
+  const sqlQuery = database
+    .selectFrom('products')
+    .selectAll()
+    .where('title', 'like', `%${query}%`)
+    .where('description', 'like', `%${query}%`)
 
-    return Math.ceil(Number(rows[0].count) / itemsPerPage)
+  if (category || category === 'all') {
+    sqlQuery.where('category', '=', category)
   }
 
-  const { rows }: { rows: { count: number }[] } = await sql`
-  SELECT 
-    COUNT(*) 
-  FROM products 
-  WHERE 
-    (title LIKE ${`%${query}%`} OR description LIKE ${`%${query}%`}) AND 
-    category = ${category}`
+  const countOfRows = (await sqlQuery.execute()).length
 
-  return Math.ceil(Number(rows[0].count) / itemsPerPage)
+  return Math.ceil(countOfRows / itemsPerPage)
 }

@@ -17,7 +17,7 @@ export const revalidate = 60
 
 export const generateMetadata = async ({ params }: { params: { slug: string[] } }): Promise<Metadata> => {
   const [_, id] = params.slug
-  const product = await getProductById(id)
+  const product = await getProductById(Number(id))
   return {
     title: `${product?.title} | ${product?.category}`,
     description: product?.description,
@@ -39,10 +39,10 @@ export const generateMetadata = async ({ params }: { params: { slug: string[] } 
 export default async function ProductPage({ params }: { params: { slug: string[] } }) {
   const [category, id] = params.slug
 
-  const product = await getProductById(id)
+  const product = await getProductById(Number(id))
   if (!product) return notFound()
 
-  const { category: productCategory, description, image, price, rating, title } = product
+  const { category: productCategory, description, image, title } = product
   return (
     <>
       <Breadcrumbs

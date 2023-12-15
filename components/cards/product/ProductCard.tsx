@@ -13,7 +13,7 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ product }: ProductCardProps) {
-  const { image, price, rating, title, id, category } = product
+  const { image, price, rating_rate, title, id, category } = product
   const { handleAddToCart } = useCart()
   return (
     <figure className="bg-primary p-4 rounded w-full h-full border-2 flex flex-col gap-4">
@@ -32,7 +32,7 @@ export function ProductCard({ product }: ProductCardProps) {
         <h4 className={`text-base ${dockerOne.className}`}>{title}</h4>
         <div className="flex justify-between items-center">
           <p className='before:content-["$"] before:pr-1 text-xl text-right bg-accent px-2 rounded w-fit'>{price}</p>
-          <p className="text-sm">Rate: {rating.rate}</p>
+          <p className="text-sm">Rate: {rating_rate}</p>
         </div>
       </figcaption>
       <div className="text-center">
