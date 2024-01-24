@@ -23,3 +23,5 @@ All in One is ab educational project of an online store, developed using modern 
  * Open Graph allows you to display a preview with a title, description, and image.
 
 This project is a great opportunity for learning and practical application of modern web development technologies.
+
+You can view the All in One Deployed Project at the following link: [All in One Deployed Project](https://all-in-one-lime.vercel.app/)
